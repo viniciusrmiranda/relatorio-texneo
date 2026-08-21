@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Texneo · SEO, GEO e Performance · Agosto 2026 · LAB8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#052E22; --deep2:#0A3A2B; --green:#004F37; --fio:#00C281; --fio2:#00A870;
+  --mag:#E5007D; --paper:#FFFFFF; --wash:#F2F6F3; --pale:#E4EFE9; --rule:#D3DFD8;
+  --ink:#0E211B; --mid:#4A6459; --dim:#8FB3A2;
+  --disp:'Archivo',system-ui,sans-serif;
+  --serif:'Source Serif 4',Georgia,serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#1A2622;font-family:var(--disp);color:var(--ink);-webkit-font-smoothing:antialiased}
+
+/* ── palco ── */
+.deck{scroll-snap-type:y mandatory;overflow-y:auto;height:100vh}
+.s{
+  scroll-snap-align:start;
+  position:relative;
+  width:min(100%,1280px);aspect-ratio:16/9;margin:0 auto 18px;
+  background:var(--paper);overflow:hidden;
+  display:flex;flex-direction:column;
+  container-type:inline-size;
+  box-shadow:0 10px 40px rgba(0,0,0,.35);
+}
+.s::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(to bottom,var(--green) 0 2px,var(--mag) 2px 3px);z-index:5}
+.s.dark{background:var(--deep);color:#DCEDE4}
+.s.dark::before{background:linear-gradient(to bottom,var(--fio) 0 2px,var(--mag) 2px 3px)}
+.body{flex:1;padding:3.6cqw 4.4cqw 2.2cqw;display:flex;flex-direction:column;min-height:0}
+
+/* tipografia fluida por container */
+.eyebrow{font-family:var(--mono);font-size:1.02cqw;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--mag);font-weight:600;margin:0 0 .9cqw;display:flex;gap:.9cqw;align-items:center}
+.dark .eyebrow{color:var(--fio)}
+.eyebrow s{text-decoration:none;color:var(--rule)}
+.dark .eyebrow s{color:#2C5545}
+h2{font-family:var(--disp);font-weight:700;font-size:3.05cqw;line-height:1.06;letter-spacing:-.024em;
+  margin:0 0 .8cqw;color:var(--green);max-width:26ch}
+.dark h2{color:#fff}
+h2 em{font-style:normal;color:var(--mag)}
+.dark h2 em{color:var(--fio)}
+.sub{font-family:var(--serif);font-size:1.42cqw;line-height:1.5;color:#3D5449;max-width:74ch;margin:0 0 1.6cqw}
+.dark .sub{color:#9EC4B2}
+
+/* ── capa ── */
+.cover{justify-content:space-between;padding:4.4cqw}
+.cover .top{display:flex;justify-content:space-between;align-items:flex-start}
+.logo{font-family:var(--disp);font-weight:700;font-size:2.5cqw;letter-spacing:-.03em;color:#fff;line-height:1}
+.logo span{color:var(--mag)}
+.logo small{display:block;font-family:var(--mono);font-size:.86cqw;letter-spacing:.34em;
+  color:var(--dim);margin-top:.4cqw;font-weight:400;text-transform:uppercase}
+.cover h1{font-family:var(--disp);font-weight:700;font-size:5.6cqw;line-height:1;letter-spacing:-.032em;
+  color:#fff;margin:0 0 1cqw}
+.cover h1 em{font-style:normal;display:block;color:var(--fio);font-size:3.1cqw;letter-spacing:-.02em;margin-top:.7cqw;max-width:30ch;line-height:1.14}
+.cover .meta{display:flex;gap:2.6cqw;font-family:var(--mono);font-size:1.02cqw;color:var(--dim);
+  letter-spacing:.1em;text-transform:uppercase;padding-top:1.5cqw;border-top:1px solid #1E4C3C}
+.cover .meta b{color:#fff;font-weight:500}
+/* trama de fundo da capa */
+.warp{position:absolute;inset:0;pointer-events:none;
+  background:
+   repeating-linear-gradient(90deg,transparent 0 22px,rgba(0,194,129,.20) 22px 23px),
+   repeating-linear-gradient(0deg,transparent 0 22px,rgba(229,0,125,.13) 22px 23px);
+  -webkit-mask-image:radial-gradient(135% 110% at 92% 18%,#000 0%,rgba(0,0,0,.35) 45%,transparent 82%);
+          mask-image:radial-gradient(135% 110% at 92% 18%,#000 0%,rgba(0,0,0,.35) 45%,transparent 82%)}
+/* amostra de fios: a assinatura da capa */
+.swatch{position:absolute;right:4.4cqw;top:23cqw;width:26cqw;pointer-events:none;opacity:.95}
+.swatch svg{display:block;width:100%;height:auto}
+.covertag{font-family:var(--serif);font-size:1.5cqw;line-height:1.5;color:#9EC4B2;max-width:46ch;margin:1.4cqw 0 0}
+.covertag em{font-style:normal;color:var(--fio)}
+
+/* ── cartões de número ── */
+.kpis{display:grid;gap:.75cqw;margin-top:auto}
+.k4{grid-template-columns:repeat(4,1fr)}
+.k3{grid-template-columns:repeat(3,1fr)}
+.k2{grid-template-columns:repeat(2,1fr)}
+.kpi{background:var(--wash);border-top:2px solid var(--green);padding:1.25cqw 1.15cqw 1.15cqw}
+.dark .kpi{background:#0D3B2C;border-top-color:var(--fio)}
+.kpi b{display:block;font-size:3.1cqw;font-weight:700;letter-spacing:-.035em;line-height:1;color:var(--green)}
+.dark .kpi b{color:#fff}
+.kpi span{display:block;font-family:var(--mono);font-size:.92cqw;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--mid);margin-top:.7cqw;line-height:1.5}
+.dark .kpi span{color:var(--dim)}
+.kpi.neg{border-top-color:var(--mag)} .kpi.neg b{color:var(--mag)}
+.kpi.win{border-top-color:var(--fio2)} .kpi.win b{color:var(--fio2)}
+
+/* ── colunas ── */
+.cols{display:grid;gap:2cqw;flex:1;min-height:0}
+.c2{grid-template-columns:1fr 1fr}
+.c2b{grid-template-columns:1.25fr 1fr}
+.c2c{grid-template-columns:1fr 1.4fr}
+.c3{grid-template-columns:repeat(3,1fr)}
+
+/* ── blocos ── */
+.card{background:var(--wash);border-left:3px solid var(--green);padding:1.3cqw 1.5cqw}
+.card.mag{border-left-color:var(--mag);background:#FDF1F7}
+.card.fio{border-left-color:var(--fio2);background:#EBF7F1}
+.dark .card{background:#0D3B2C;border-left-color:var(--fio)}
+.card h4{font-family:var(--disp);font-size:1.32cqw;font-weight:600;margin:0 0 .5cqw;color:var(--green);letter-spacing:-.01em}
+.dark .card h4{color:#fff}
+.card.mag h4{color:var(--mag)}
+.card p{font-family:var(--serif);font-size:1.16cqw;line-height:1.55;margin:0;color:#3D5449}
+.dark .card p{color:#9EC4B2}
+.card p+p{margin-top:.6cqw}
+.tagline{font-family:var(--mono);font-size:.88cqw;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mid);font-weight:600;display:block;margin-bottom:.5cqw}
+.card.mag .tagline{color:var(--mag)} .card.fio .tagline{color:var(--fio2)}
+
+/* ── listas numeradas ── */
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.85cqw}
+.steps li{display:grid;grid-template-columns:2.4cqw 1fr;gap:1cqw;align-items:start}
+.steps .n{font-family:var(--mono);font-size:1.24cqw;font-weight:600;color:var(--mag);padding-top:.15cqw}
+.dark .steps .n{color:var(--fio)}
+.steps b{font-family:var(--disp);font-size:1.3cqw;font-weight:600;display:block;margin-bottom:.15cqw;letter-spacing:-.01em}
+.steps span{font-family:var(--serif);font-size:1.14cqw;line-height:1.5;color:#4A6459}
+.dark .steps span{color:#9EC4B2}
+
+/* ── tabelas ── */
+table{width:100%;border-collapse:collapse;font-size:1.08cqw}
+th{font-family:var(--mono);font-size:.86cqw;letter-spacing:.13em;text-transform:uppercase;text-align:left;
+  padding:.55cqw .6cqw;color:var(--mid);border-bottom:2px solid var(--green);font-weight:600;white-space:nowrap}
+.dark th{color:var(--dim);border-bottom-color:var(--fio)}
+td{padding:.62cqw .6cqw;border-bottom:1px solid var(--rule);vertical-align:middle;line-height:1.36}
+.dark td{border-bottom-color:#1E4C3C;color:#C6DED2}
+td.n,th.n{font-family:var(--mono);font-size:1.04cqw;white-space:nowrap}
+tbody tr.hi{background:#EAF7F0}
+.dark tbody tr.hi{background:#0D3B2C}
+tr.hi td{font-weight:600}
+td small{font-size:.9cqw;color:var(--mid);font-family:var(--mono)}
+.dark td small{color:var(--dim)}
+.gtd td{background:var(--green);color:#fff;font-family:var(--mono);font-size:.82cqw;letter-spacing:.14em;
+  text-transform:uppercase;padding:.4cqw .6cqw;border:0}
+
+/* faixa de leitura, para ancorar o slide */
+.strip{background:var(--deep);color:#BEDCCD;padding:1.25cqw 1.5cqw;display:flex;gap:1.6cqw;align-items:baseline;margin:.6cqw 0}
+.strip b{font-family:var(--mono);font-size:.86cqw;letter-spacing:.18em;text-transform:uppercase;color:var(--fio);white-space:nowrap}
+.strip p{font-family:var(--serif);font-size:1.24cqw;line-height:1.5;margin:0}
+.strip p em{font-style:normal;color:#fff;font-weight:600}
+
+/* nota de rodapé do conteúdo, empurrada para a base */
+.note{margin-top:auto;border-top:1px solid var(--rule);padding-top:1cqw;display:flex;gap:2.4cqw;
+  font-family:var(--mono);font-size:.92cqw;color:var(--mid);letter-spacing:.04em;line-height:1.65}
+.dark .note{border-top-color:#1E4C3C;color:var(--dim)}
+.note b{color:var(--green);font-weight:600} .dark .note b{color:var(--fio)}
+.note>span{flex:1}
+
+/* tabela arejada, para slides com poucas linhas */
+.roomy td{padding:.95cqw .6cqw}
+.roomy th{padding:.7cqw .6cqw}
+
+/* tabela densa, para slides com muitas linhas */
+.dense td{padding:.4cqw .5cqw;font-size:.98cqw}
+.dense th{padding:.4cqw .5cqw;font-size:.8cqw}
+.dense td.n,.dense th.n{font-size:.94cqw}
+.dense td small{font-size:.84cqw}
+.dense .gtd td{padding:.32cqw .5cqw;font-size:.78cqw}
+
+/* pílulas */
+.p{font-family:var(--mono);font-size:.92cqw;font-weight:600;padding:.15cqw .5cqw;border-radius:2px;white-space:nowrap}
+.p3{background:#0E5C3C;color:#fff} .p10{background:#CBE7D8;color:#0E5C3C}
+.p20{background:#FBE9C8;color:#8A5200} .p50{background:#EEF1EF;color:#5B6660}
+.pno{background:#FBE2EE;color:#A8005C}
+.dark .p50{background:#173F32;color:#8FB3A2}
+
+/* frase de fecho */
+.pull{font-family:var(--serif);font-size:1.72cqw;line-height:1.42;color:var(--green);
+  border-left:3px solid var(--mag);padding-left:1.4cqw;margin:0;max-width:62ch}
+.dark .pull{color:#fff;border-left-color:var(--fio)}
+.pull b{font-weight:600}
+
+/* divisória de seção */
+.divider .body{justify-content:center}
+.divider .num{font-family:var(--disp);font-size:9cqw;font-weight:700;line-height:.85;letter-spacing:-.05em;
+  color:var(--fio);opacity:.9}
+.divider h2{font-size:4.6cqw;max-width:20ch;margin-top:.6cqw}
+.divider .sub{font-size:1.55cqw;max-width:52ch}
+
+/* gráfico */
+.chartwrap{flex:1;display:flex;align-items:center;min-height:0}
+.chartwrap svg{width:100%;height:auto;max-height:100%}
+.leg{display:flex;gap:2cqw;font-family:var(--mono);font-size:.9cqw;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--dim);margin-top:.6cqw}
+.leg i{display:inline-block;width:.85cqw;height:.85cqw;margin-right:.45cqw;vertical-align:-.05cqw}
+
+/* barra de composição */
+.compbar{display:flex;height:3.4cqw;margin:.4cqw 0 1cqw;overflow:hidden}
+.compbar div{display:flex;align-items:center;justify-content:center;font-family:var(--mono);
+  font-size:.94cqw;font-weight:600;color:#fff;letter-spacing:.04em;overflow:hidden;white-space:nowrap}
+.compkey{display:flex;gap:1.6cqw;flex-wrap:wrap;font-family:var(--mono);font-size:.9cqw;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--mid);margin:0 0 1.1cqw}
+.compkey i{display:inline-block;width:.8cqw;height:.8cqw;margin-right:.45cqw;vertical-align:-.04cqw}
+
+/* rodapé de slide */
+.foot{display:flex;justify-content:space-between;align-items:center;
+  padding:.9cqw 4.4cqw;border-top:1px solid var(--rule);
+  font-family:var(--mono);font-size:.84cqw;letter-spacing:.16em;text-transform:uppercase;color:#9AAFA5}
+.dark .foot{border-top-color:#1E4C3C;color:#5E8875}
+.foot b{color:var(--mag);font-weight:600}
+.dark .foot b{color:var(--fio)}
+.cover .foot,.divider .foot{display:none}
+
+/* barra de navegação */
+.nav{position:fixed;right:16px;bottom:16px;z-index:50;display:flex;gap:8px;
+  font-family:var(--mono);font-size:12px}
+.nav button{background:#0A3A2B;color:#9EC4B2;border:1px solid #1E4C3C;padding:7px 11px;cursor:pointer;
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;border-radius:2px}
+.nav button:hover{background:#12513C;color:#fff}
+.nav button:focus-visible{outline:2px solid var(--fio);outline-offset:2px}
+.nav .cnt{color:#5E8875;padding:7px 4px;align-self:center}
+
+@media print{
+  @page{size:1280px 720px;margin:0}
+  body{background:#fff}
+  .deck{height:auto;overflow:visible}
+  .s{margin:0;box-shadow:none;break-after:page;page-break-after:always;width:1280px}
+  .nav{display:none}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media(max-width:900px){
+  .s{aspect-ratio:auto;min-height:auto}
+  .body{padding:26px 22px}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- ═════ 01 CAPA ═════ -->
+<section class="s dark">
+  <div class="warp"></div>
+  <div class="swatch" aria-hidden="true">
+    <svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg">
+      <g stroke-linecap="butt">
+        <line x1="0" y1="4.0" x2="340" y2="4.0" stroke="#A8F5D6" stroke-opacity="0.92" stroke-width="2.60"/>
+        <line x1="3" y1="8.6" x2="340" y2="8.6" stroke="#A8F5D6" stroke-opacity="0.89" stroke-width="2.54"/>
+        <line x1="6" y1="13.2" x2="340" y2="13.2" stroke="#A8F5D6" stroke-opacity="0.87" stroke-width="2.49"/>
+        <line x1="9" y1="17.8" x2="340" y2="17.8" stroke="#A8F5D6" stroke-opacity="0.84" stroke-width="2.44"/>
+        <line x1="13" y1="22.4" x2="340" y2="22.4" stroke="#A8F5D6" stroke-opacity="0.82" stroke-width="2.38"/>
+        <line x1="16" y1="27.0" x2="340" y2="27.0" stroke="#A8F5D6" stroke-opacity="0.79" stroke-width="2.33"/>
+        <line x1="19" y1="31.6" x2="340" y2="31.6" stroke="#00C281" stroke-opacity="0.76" stroke-width="2.27"/>
+        <line x1="23" y1="36.2" x2="340" y2="36.2" stroke="#00C281" stroke-opacity="0.74" stroke-width="2.21"/>
+        <line x1="26" y1="40.8" x2="340" y2="40.8" stroke="#00C281" stroke-opacity="0.71" stroke-width="2.16"/>
+        <line x1="29" y1="45.4" x2="340" y2="45.4" stroke="#00C281" stroke-opacity="0.69" stroke-width="2.10"/>
+        <line x1="33" y1="50.0" x2="340" y2="50.0" stroke="#00C281" stroke-opacity="0.66" stroke-width="2.05"/>
+        <line x1="36" y1="54.6" x2="340" y2="54.6" stroke="#00C281" stroke-opacity="0.63" stroke-width="2.00"/>
+        <line x1="39" y1="59.2" x2="340" y2="59.2" stroke="#00C281" stroke-opacity="0.61" stroke-width="1.94"/>
+        <line x1="42" y1="63.8" x2="340" y2="63.8" stroke="#00C281" stroke-opacity="0.58" stroke-width="1.89"/>
+        <line x1="46" y1="68.4" x2="340" y2="68.4" stroke="#2A6E56" stroke-opacity="0.56" stroke-width="1.83"/>
+        <line x1="49" y1="73.0" x2="340" y2="73.0" stroke="#2A6E56" stroke-opacity="0.53" stroke-width="1.78"/>
+        <line x1="52" y1="77.6" x2="340" y2="77.6" stroke="#2A6E56" stroke-opacity="0.50" stroke-width="1.72"/>
+        <line x1="56" y1="82.2" x2="340" y2="82.2" stroke="#2A6E56" stroke-opacity="0.48" stroke-width="1.67"/>
+        <line x1="59" y1="86.8" x2="340" y2="86.8" stroke="#2A6E56" stroke-opacity="0.45" stroke-width="1.61"/>
+        <line x1="62" y1="91.4" x2="340" y2="91.4" stroke="#2A6E56" stroke-opacity="0.43" stroke-width="1.56"/>
+        <line x1="66" y1="96.0" x2="340" y2="96.0" stroke="#2A6E56" stroke-opacity="0.40" stroke-width="1.50"/>
+        <line x1="69" y1="100.6" x2="340" y2="100.6" stroke="#2A6E56" stroke-opacity="0.37" stroke-width="1.45"/>
+        <line x1="72" y1="105.2" x2="340" y2="105.2" stroke="#2A6E56" stroke-opacity="0.35" stroke-width="1.39"/>
+        <line x1="75" y1="109.8" x2="340" y2="109.8" stroke="#2A6E56" stroke-opacity="0.32" stroke-width="1.34"/>
+        <line x1="79" y1="114.4" x2="340" y2="114.4" stroke="#2A6E56" stroke-opacity="0.30" stroke-width="1.28"/>
+        <line x1="82" y1="119.0" x2="340" y2="119.0" stroke="#2A6E56" stroke-opacity="0.27" stroke-width="1.23"/>
+        <line x1="85" y1="123.6" x2="340" y2="123.6" stroke="#2A6E56" stroke-opacity="0.24" stroke-width="1.17"/>
+        <line x1="89" y1="128.2" x2="340" y2="128.2" stroke="#2A6E56" stroke-opacity="0.22" stroke-width="1.11"/>
+        <line x1="92" y1="132.8" x2="340" y2="132.8" stroke="#2A6E56" stroke-opacity="0.19" stroke-width="1.06"/>
+        <line x1="95" y1="137.4" x2="340" y2="137.4" stroke="#2A6E56" stroke-opacity="0.17" stroke-width="1.01"/>
+        <line x1="99" y1="142.0" x2="340" y2="142.0" stroke="#2A6E56" stroke-opacity="0.14" stroke-width="0.95"/>
+        <line x1="102" y1="146.6" x2="340" y2="146.6" stroke="#2A6E56" stroke-opacity="0.11" stroke-width="0.90"/>
+        <line x1="105" y1="151.2" x2="340" y2="151.2" stroke="#2A6E56" stroke-opacity="0.10" stroke-width="0.84"/>
+        <line x1="108" y1="155.8" x2="340" y2="155.8" stroke="#2A6E56" stroke-opacity="0.10" stroke-width="0.79"/>
+        <line x1="112" y1="160.4" x2="340" y2="160.4" stroke="#2A6E56" stroke-opacity="0.10" stroke-width="0.73"/>
+        <line x1="115" y1="165.0" x2="340" y2="165.0" stroke="#2A6E56" stroke-opacity="0.10" stroke-width="0.70"/>
+        <line x1="118" y1="169.6" x2="340" y2="169.6" stroke="#2A6E56" stroke-opacity="0.10" stroke-width="0.70"/>
+        <line x1="122" y1="174.2" x2="340" y2="174.2" stroke="#2A6E56" stroke-opacity="0.10" stroke-width="0.70"/>
+        <line x1="125" y1="178.8" x2="340" y2="178.8" stroke="#2A6E56" stroke-opacity="0.10" stroke-width="0.70"/>
+        <line x1="128" y1="183.4" x2="340" y2="183.4" stroke="#2A6E56" stroke-opacity="0.10" stroke-width="0.70"/>
+      </g>
+      <g stroke="#E5007D" stroke-opacity=".5" stroke-width=".8">
+        <line x1="18" y1="0" x2="18" y2="188"/>
+        <line x1="44" y1="0" x2="44" y2="181"/>
+        <line x1="70" y1="0" x2="70" y2="174"/>
+        <line x1="96" y1="0" x2="96" y2="167"/>
+        <line x1="122" y1="0" x2="122" y2="160"/>
+        <line x1="148" y1="0" x2="148" y2="153"/>
+        <line x1="174" y1="0" x2="174" y2="146"/>
+        <line x1="200" y1="0" x2="200" y2="139"/>
+        <line x1="226" y1="0" x2="226" y2="132"/>
+        <line x1="252" y1="0" x2="252" y2="125"/>
+        <line x1="278" y1="0" x2="278" y2="118"/>
+        <line x1="304" y1="0" x2="304" y2="111"/>
+        <line x1="330" y1="0" x2="330" y2="104"/>
+      </g>
+    </svg>
+  </div>
+  <div class="body cover" style="position:relative;z-index:2">
+    <div class="top">
+      <div class="logo">LAB<span>8</span><small>agência</small></div>
+      <div style="font-family:var(--mono);font-size:1.02cqw;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);text-align:right">
+        Relatório estratégico<br><span style="color:#fff">Agosto · 2026</span></div>
+    </div>
+    <div>
+      <h1>Texneo<em>SEO, GEO e performance orgânica</em></h1>
+      <p class="covertag">O site perdeu 78% das impressões e manteve três quartos dos cliques.
+      Este relatório mostra <em>o que caiu de verdade</em>, o que ainda está parado
+      e a régua que passa a valer.</p>
+    </div>
+    <div class="meta">
+      <span>Diagnóstico da queda</span>
+      <span><b>Metas de ranqueamento</b></span>
+      <span>Performance de julho</span>
+      <span>Presença nas IAs</span>
+      <span>Plano de 90 dias</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ 02 SUMÁRIO ═════ -->
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Sumário executivo <s>/</s> os números de julho</p>
+    <h2>A cobertura caiu.<br><em>Os cliques, não.</em></h2>
+    <p class="sub">Os dois fatos convivem, e entender por quê é o que define a ordem do trabalho
+    daqui para frente.</p>
+
+    <div class="strip">
+      <b>Leitura do mês</b>
+      <p>A arquitetura anterior do site ainda responde por <em>38% das impressões</em>, com seis artigos
+      publicados em dois endereços ao mesmo tempo. Resolver essa convivência é a entrega de maior
+      retorno do trimestre — e <em>não custa nenhum artigo</em>.</p>
+    </div>
+
+    <div class="kpis k4">
+      <div class="kpi neg"><b>−78%</b><span>impressões por dia<br>de maio para agosto</span></div>
+      <div class="kpi"><b>−25%</b><span>cliques por dia<br>no mesmo período</span></div>
+      <div class="kpi win"><b>+27%</b><span>impressões de julho<br>para agosto · já reagindo</span></div>
+      <div class="kpi neg"><b>0,76%</b><span>CTR fora de marca<br>a média do site é 5,57%</span></div>
+    </div>
+    <div class="kpis k4" style="margin-top:.75cqw">
+      <div class="kpi neg"><b>450</b><span>endereços da arquitetura<br>anterior ainda na busca</span></div>
+      <div class="kpi neg"><b>1.619</b><span>páginas indexadas<br>eram 3.846 em maio</span></div>
+      <div class="kpi neg"><b>0,18%</b><span>conversão declarada<br>a real é 5,5%</span></div>
+      <div class="kpi win"><b>1ª</b><span>marca do setor<br>mais citada pelas IAs</span></div>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>02</span></div>
+</section>
+
+<section class="s dark">
+  <div class="body">
+    <p class="eyebrow">Desempenho na busca <s>/</s> 90 dias</p>
+    <h2>O site perdeu vitrine. <em>Não perdeu clique.</em></h2>
+    <div class="chartwrap">
+<svg viewBox="0 0 1120 370" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono, monospace">
+<line x1="54" y1="318.0" x2="1062" y2="318.0" stroke="#1E4C3C" stroke-width="1"/>
+<text x="46" y="322.0" font-size="11" fill="#5E8875" text-anchor="end">0</text>
+<line x1="54" y1="245.0" x2="1062" y2="245.0" stroke="#1E4C3C" stroke-width="1"/>
+<text x="46" y="249.0" font-size="11" fill="#5E8875" text-anchor="end">1750</text>
+<line x1="54" y1="172.0" x2="1062" y2="172.0" stroke="#1E4C3C" stroke-width="1"/>
+<text x="46" y="176.0" font-size="11" fill="#5E8875" text-anchor="end">3500</text>
+<line x1="54" y1="99.0" x2="1062" y2="99.0" stroke="#1E4C3C" stroke-width="1"/>
+<text x="46" y="103.0" font-size="11" fill="#5E8875" text-anchor="end">5250</text>
+<line x1="54" y1="26.0" x2="1062" y2="26.0" stroke="#1E4C3C" stroke-width="1"/>
+<text x="46" y="30.0" font-size="11" fill="#5E8875" text-anchor="end">7000</text>
+<text x="1070" y="322.0" font-size="11" fill="#E5007D">0</text>
+<text x="1070" y="176.0" font-size="11" fill="#E5007D">130</text>
+<text x="1070" y="30.0" font-size="11" fill="#E5007D">260</text>
+<polygon points="54,318 54.0,40.7 65.1,32.6 76.2,66.5 87.2,73.9 98.3,71.1 109.4,29.3 120.5,32.8 131.5,42.9 142.6,72.2 153.7,90.2 164.8,115.4 175.8,114.4 186.9,176.5 198.0,200.3 209.1,233.2 220.2,266.7 231.2,260.2 242.3,276.5 253.4,284.3 264.5,256.2 275.5,256.9 286.6,255.5 297.7,258.4 308.8,267.7 319.8,292.1 330.9,291.5 342.0,260.9 353.1,270.5 364.2,268.7 375.2,276.6 386.3,285.4 397.4,294.2 408.5,294.4 419.5,268.2 430.6,261.2 441.7,269.7 452.8,265.9 463.8,264.7 474.9,283.0 486.0,279.7 497.1,273.2 508.2,265.8 519.2,261.4 530.3,266.1 541.4,277.7 552.5,293.9 563.5,299.0 574.6,273.1 585.7,267.4 596.8,272.4 607.8,273.3 618.9,276.7 630.0,289.2 641.1,289.4 652.2,258.9 663.2,262.6 674.3,264.9 685.4,266.1 696.5,267.6 707.5,288.3 718.6,292.1 729.7,266.7 740.8,265.1 751.8,267.8 762.9,268.0 774.0,274.2 785.1,286.0 796.2,281.2 807.2,248.9 818.3,244.4 829.4,242.9 840.5,247.0 851.5,256.4 862.6,275.8 873.7,279.2 884.8,250.2 895.8,248.8 906.9,248.1 918.0,249.3 929.1,260.4 940.2,277.6 951.2,278.8 962.3,249.8 973.4,255.5 984.5,249.6 995.5,236.7 1006.6,256.0 1017.7,277.1 1028.8,275.5 1039.8,242.1 1050.9,243.4 1062.0,244.5 1062,318" fill="#00C281" fill-opacity=".16"/>
+<polyline points="54.0,40.7 65.1,32.6 76.2,66.5 87.2,73.9 98.3,71.1 109.4,29.3 120.5,32.8 131.5,42.9 142.6,72.2 153.7,90.2 164.8,115.4 175.8,114.4 186.9,176.5 198.0,200.3 209.1,233.2 220.2,266.7 231.2,260.2 242.3,276.5 253.4,284.3 264.5,256.2 275.5,256.9 286.6,255.5 297.7,258.4 308.8,267.7 319.8,292.1 330.9,291.5 342.0,260.9 353.1,270.5 364.2,268.7 375.2,276.6 386.3,285.4 397.4,294.2 408.5,294.4 419.5,268.2 430.6,261.2 441.7,269.7 452.8,265.9 463.8,264.7 474.9,283.0 486.0,279.7 497.1,273.2 508.2,265.8 519.2,261.4 530.3,266.1 541.4,277.7 552.5,293.9 563.5,299.0 574.6,273.1 585.7,267.4 596.8,272.4 607.8,273.3 618.9,276.7 630.0,289.2 641.1,289.4 652.2,258.9 663.2,262.6 674.3,264.9 685.4,266.1 696.5,267.6 707.5,288.3 718.6,292.1 729.7,266.7 740.8,265.1 751.8,267.8 762.9,268.0 774.0,274.2 785.1,286.0 796.2,281.2 807.2,248.9 818.3,244.4 829.4,242.9 840.5,247.0 851.5,256.4 862.6,275.8 873.7,279.2 884.8,250.2 895.8,248.8 906.9,248.1 918.0,249.3 929.1,260.4 940.2,277.6 951.2,278.8 962.3,249.8 973.4,255.5 984.5,249.6 995.5,236.7 1006.6,256.0 1017.7,277.1 1028.8,275.5 1039.8,242.1 1050.9,243.4 1062.0,244.5" fill="none" stroke="#00C281" stroke-width="2"/>
+<polyline points="54.0,115.8 65.1,123.7 76.2,123.7 87.2,231.5 98.3,238.3 109.4,119.2 120.5,110.2 131.5,131.6 142.6,127.1 153.7,142.8 164.8,230.4 175.8,243.9 186.9,92.3 198.0,120.3 209.1,143.9 220.2,242.8 231.2,197.8 242.3,272.0 253.4,269.7 264.5,142.8 275.5,170.9 286.6,205.7 297.7,175.4 308.8,223.7 319.8,285.4 330.9,285.4 342.0,147.3 353.1,181.0 364.2,182.1 375.2,174.2 386.3,215.8 397.4,291.0 408.5,282.1 419.5,200.1 430.6,154.0 441.7,173.1 452.8,145.0 463.8,192.2 474.9,278.7 486.0,286.6 497.1,228.2 508.2,187.7 519.2,168.6 530.3,165.3 541.4,215.8 552.5,283.2 563.5,286.6 574.6,164.1 585.7,193.3 596.8,195.6 607.8,191.1 618.9,200.1 630.0,275.3 641.1,288.8 652.2,176.5 663.2,177.6 674.3,194.5 685.4,159.6 696.5,195.6 707.5,293.3 718.6,282.1 729.7,196.7 740.8,193.3 751.8,172.0 762.9,182.1 774.0,210.2 785.1,292.2 796.2,280.9 807.2,163.0 818.3,161.9 829.4,184.4 840.5,167.5 851.5,201.2 862.6,277.6 873.7,287.7 884.8,158.5 895.8,148.4 906.9,136.1 918.0,149.5 929.1,207.9 940.2,276.4 951.2,278.7 962.3,178.7 973.4,179.9 984.5,145.0 995.5,175.4 1006.6,192.2 1017.7,276.4 1028.8,277.6 1039.8,183.2 1050.9,141.7 1062.0,150.7" fill="none" stroke="#E5007D" stroke-width="2"/>
+<line x1="153.7" y1="26" x2="153.7" y2="318" stroke="#F0B429" stroke-width="1.6" stroke-dasharray="5 4"/>
+<text x="160.7" y="38" font-size="11" fill="#F0B429" letter-spacing=".08em">QUEDA DE INDEXAÇÃO</text>
+<line x1="618.9" y1="26" x2="618.9" y2="318" stroke="#E5007D" stroke-width="1.6" stroke-dasharray="5 4"/>
+<text x="625.9" y="38" font-size="11" fill="#E5007D" letter-spacing=".08em">MIGRAÇÃO 10/07</text>
+<text x="186.9" y="338" font-size="11.5" fill="#8FB3A2" text-anchor="middle">01/06</text>
+<text x="519.2" y="338" font-size="11.5" fill="#8FB3A2" text-anchor="middle">01/07</text>
+<text x="862.6" y="338" font-size="11.5" fill="#8FB3A2" text-anchor="middle">01/08</text>
+<line x1="54" y1="318" x2="1062" y2="318" stroke="#00C281" stroke-width="1.2"/>
+<text x="54" y="364" font-size="12" fill="#00C281">▬ IMPRESSÕES · escala à esquerda</text>
+<text x="354" y="364" font-size="12" fill="#E5007D">▬ CLIQUES · escala à direita</text>
+</svg>
+    </div>
+    <div class="leg">
+      <span>90 dias · 20 mai a 19 ago 2026</span>
+      <span>9.649 cliques</span>
+      <span>173.289 impressões</span>
+      <span>CTR 5,57%</span>
+      <span style="color:#E5007D;margin-left:auto">20 mai a 19 ago de 2026</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>03</span></div>
+</section>
+
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Desempenho na busca <s>/</s> mês a mês</p>
+    <h2>78% menos impressões, <em>25% menos cliques</em></h2>
+    <table class="roomy" style="margin-top:.4cqw">
+      <thead><tr><th>Mês</th><th class="n">Cliques/dia</th><th class="n">Impressões/dia</th><th class="n">CTR</th><th class="n">Posição</th><th>Leitura</th></tr></thead>
+      <tbody>
+        <tr><td><b>Maio</b> <small>(20 a 31)</small></td><td class="n">139</td><td class="n">6.061</td><td class="n">2,30%</td><td class="n">6,43</td><td>Muita vitrine, pouco clique.</td></tr>
+        <tr><td>Junho</td><td class="n">101</td><td class="n">1.264</td><td class="n">7,97%</td><td class="n">7,74</td><td>As impressões caem 79% e os cliques, 27%.</td></tr>
+        <tr><td>Julho</td><td class="n">96</td><td class="n">1.136</td><td class="n">8,46%</td><td class="n">6,52</td><td>Fundo do poço em impressão. Cliques estáveis.</td></tr>
+        <tr class="hi"><td><b>Agosto</b> <small>(1 a 19)</small></td><td class="n">104</td><td class="n">1.443</td><td class="n">7,21%</td><td class="n">8,16</td>
+        <td><b>Impressões voltam a subir: +27% sobre julho.</b></td></tr>
+      </tbody>
+    </table>
+    <div class="cols c2" style="flex:0;margin-top:1cqw;align-items:stretch">
+      <div class="card fio">
+        <span class="tagline">O que isso quer dizer</span>
+        <p>Em maio, cada 100 aparições geravam 2 cliques. Hoje geram 7. <b>O que desapareceu do índice foi,
+        em boa parte, aquilo que nunca trouxe ninguém.</b></p>
+      </div>
+      <div class="card mag">
+        <span class="tagline">A data importa para o plano</span>
+        <p>O movimento forte foi entre <b>29 de maio e 12 de junho</b> — 2.196 páginas fora do índice em
+        duas semanas, seis semanas antes da migração do blog. A causa raiz é anterior:
+        <b>recompor índice vem antes de recompor conteúdo.</b></p>
+      </div>
+    </div>
+    <div class="note">
+      <span><b>Páginas indexadas:</b> 3.846 em 24 de maio, 2.251 em 12 de junho, 1.619 em 16 de agosto.
+      De 24 de julho para cá o número parou de cair e as não indexadas pararam de crescer.</span>
+      <span><b>Muda a urgência, não o plano:</b> não é uma emergência de recuperação de tráfego,
+      é um trabalho de recomposição de índice e de conversão do que já aparece.</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>04</span></div>
+</section>
+
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Arquitetura <s>/</s> o achado do mês</p>
+    <h2>Duas arquiteturas <em>convivendo</em> no mesmo domínio</h2>
+    <div class="cols c2c">
+      <div>
+        <div class="kpis k2">
+          <div class="kpi neg"><b>450</b><span>endereços sob /br/<br>com histórico de impressão</span></div>
+          <div class="kpi neg"><b>38%</b><span>de todas as impressões<br>do trimestre</span></div>
+        </div>
+        <div class="card mag" style="margin-top:.9cqw">
+          <span class="tagline">Seis artigos em dois endereços</span>
+          <p>Não é semelhança de tema: é o <b>mesmo texto, no mesmo domínio, em dois caminhos</b>,
+          os dois indexados e concorrendo entre si. Somam <b>16.611 impressões e 123 cliques</b> —
+          CTR de 0,74%.</p>
+          <p>É o retrato de um buscador em dúvida sobre qual endereço mostrar. E é a razão pela qual
+          qualquer melhoria de conteúdo hoje é aplicada em metade do sinal.</p>
+        </div>
+      </div>
+      <table class="dense">
+        <thead><tr><th>Artigo em duas URLs</th><th class="n">Impr.</th><th class="n">Cliques</th><th class="n">Pos.</th></tr></thead>
+        <tbody>
+          <tr><td>Rendimento do tecido <small>/blog/</small></td><td class="n">5.451</td><td class="n">58</td><td class="n">4,7º</td></tr>
+          <tr class="hi"><td><small>/br/blog/…/533/</small></td><td class="n">1.551</td><td class="n">12</td><td class="n">5,2º</td></tr>
+          <tr><td>Tecido que não amassa <small>/br/blog/…/536/</small></td><td class="n">2.687</td><td class="n">14</td><td class="n">6,7º</td></tr>
+          <tr class="hi"><td><small>/blog/…</small></td><td class="n">2.262</td><td class="n">4</td><td class="n">8,2º</td></tr>
+          <tr><td>Tecido esportivo ideal <small>/blog/</small></td><td class="n">2.038</td><td class="n">14</td><td class="n">6,4º</td></tr>
+          <tr class="hi"><td><small>/br/blog/…/534/</small></td><td class="n">629</td><td class="n">2</td><td class="n">8,3º</td></tr>
+          <tr><td>Símbolos de lavagem 2018 · sustentáveis · cores 24 <small>(3 pares)</small></td><td class="n">1.993</td><td class="n">19</td><td class="n">5,9–11,1º</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <span><b>Fora dessa lista, o caso mais caro:</b> /br/blog/simbolos-de-lavagem-o-que-significam-/457/
+      tem <b>30.761 impressões</b> — a página mais vista do site — na posição 6,4, com 199 cliques. CTR de 0,65%.</span>
+      <span><b>Primeira tarefa:</b> rastrear código de resposta, canônica e estado de indexação dos 450
+      endereços. O prefixo /br/ é herança de uma estrutura de idiomas que o site não usa mais —
+      <b>o destino é o mesmo em qualquer cenário:</b> equivalente na arquitetura atual, ou encerramento.</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>05</span></div>
+</section>
+
+<!-- ═════ 03 GRÁFICO ═════ -->
+<section class="s dark">
+  <div class="body">
+    <p class="eyebrow">Diagnóstico <s>/</s> a série completa</p>
+    <h2>A queda, mês a mês</h2>
+    <div class="chartwrap">
+<svg viewBox="0 0 1120 360" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono, monospace">
+<defs><pattern id="w" width="4" height="4" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="4" y2="0" stroke="#052E22" stroke-opacity=".34" stroke-width="1"/></pattern></defs>
+<line x1="52" y1="302.0" x2="1104" y2="302.0" stroke="#1E4C3C" stroke-width="1"/>
+<text x="42" y="306.0" font-size="11" fill="#5E8875" text-anchor="end">0</text>
+<line x1="52" y1="233.0" x2="1104" y2="233.0" stroke="#1E4C3C" stroke-width="1"/>
+<text x="42" y="237.0" font-size="11" fill="#5E8875" text-anchor="end">200</text>
+<line x1="52" y1="164.0" x2="1104" y2="164.0" stroke="#1E4C3C" stroke-width="1"/>
+<text x="42" y="168.0" font-size="11" fill="#5E8875" text-anchor="end">400</text>
+<line x1="52" y1="95.0" x2="1104" y2="95.0" stroke="#1E4C3C" stroke-width="1"/>
+<text x="42" y="99.0" font-size="11" fill="#5E8875" text-anchor="end">600</text>
+<line x1="52" y1="26.0" x2="1104" y2="26.0" stroke="#1E4C3C" stroke-width="1"/>
+<text x="42" y="30.0" font-size="11" fill="#5E8875" text-anchor="end">800</text>
+<rect x="52.0" y="206.1" width="114.0" height="95.9" fill="#144535"/>
+<rect x="52.0" y="206.1" width="114.0" height="95.9" fill="url(#w)"/>
+<rect x="52.0" y="59.1" width="114.0" height="147.0" fill="#2A6E56"/>
+<rect x="52.0" y="59.1" width="114.0" height="147.0" fill="url(#w)"/>
+<rect x="52.0" y="29.8" width="114.0" height="29.3" fill="#00C281"/>
+<rect x="52.0" y="29.8" width="114.0" height="29.3" fill="url(#w)"/>
+<rect x="52.0" y="26.0" width="114.0" height="3.8" fill="#A8F5D6"/>
+<rect x="52.0" y="26.0" width="114.0" height="3.8" fill="url(#w)"/>
+<text x="109.0" y="15.0" font-size="18" font-weight="600" fill="#FFFFFF" text-anchor="middle">800</text>
+<text x="109.0" y="323.0" font-size="12" fill="#8FB3A2" text-anchor="middle" letter-spacing="1">DEZ 25</text>
+<text x="109.0" y="341.0" font-size="11.5" fill="#A8F5D6" text-anchor="middle">top10 96</text>
+<rect x="186.0" y="263.0" width="114.0" height="39.0" fill="#144535"/>
+<rect x="186.0" y="263.0" width="114.0" height="39.0" fill="url(#w)"/>
+<rect x="186.0" y="189.2" width="114.0" height="73.8" fill="#2A6E56"/>
+<rect x="186.0" y="189.2" width="114.0" height="73.8" fill="url(#w)"/>
+<rect x="186.0" y="170.6" width="114.0" height="18.6" fill="#00C281"/>
+<rect x="186.0" y="170.6" width="114.0" height="18.6" fill="url(#w)"/>
+<rect x="186.0" y="168.1" width="114.0" height="2.4" fill="#A8F5D6"/>
+<rect x="186.0" y="168.1" width="114.0" height="2.4" fill="url(#w)"/>
+<text x="243.0" y="157.1" font-size="18" font-weight="600" fill="#FFFFFF" text-anchor="middle">388</text>
+<text x="243.0" y="323.0" font-size="12" fill="#8FB3A2" text-anchor="middle" letter-spacing="1">JAN</text>
+<text x="243.0" y="341.0" font-size="11.5" fill="#A8F5D6" text-anchor="middle">top10 61</text>
+<rect x="320.0" y="236.1" width="114.0" height="65.9" fill="#144535"/>
+<rect x="320.0" y="236.1" width="114.0" height="65.9" fill="url(#w)"/>
+<rect x="320.0" y="126.1" width="114.0" height="110.1" fill="#2A6E56"/>
+<rect x="320.0" y="126.1" width="114.0" height="110.1" fill="url(#w)"/>
+<rect x="320.0" y="97.4" width="114.0" height="28.6" fill="#00C281"/>
+<rect x="320.0" y="97.4" width="114.0" height="28.6" fill="url(#w)"/>
+<rect x="320.0" y="93.6" width="114.0" height="3.8" fill="#A8F5D6"/>
+<rect x="320.0" y="93.6" width="114.0" height="3.8" fill="url(#w)"/>
+<text x="377.0" y="82.6" font-size="18" font-weight="600" fill="#FFFFFF" text-anchor="middle">604</text>
+<text x="377.0" y="323.0" font-size="12" fill="#8FB3A2" text-anchor="middle" letter-spacing="1">FEV</text>
+<text x="377.0" y="341.0" font-size="11.5" fill="#A8F5D6" text-anchor="middle">top10 94</text>
+<rect x="454.0" y="238.2" width="114.0" height="63.8" fill="#144535"/>
+<rect x="454.0" y="238.2" width="114.0" height="63.8" fill="url(#w)"/>
+<rect x="454.0" y="122.3" width="114.0" height="115.9" fill="#2A6E56"/>
+<rect x="454.0" y="122.3" width="114.0" height="115.9" fill="url(#w)"/>
+<rect x="454.0" y="92.9" width="114.0" height="29.3" fill="#00C281"/>
+<rect x="454.0" y="92.9" width="114.0" height="29.3" fill="url(#w)"/>
+<rect x="454.0" y="86.4" width="114.0" height="6.6" fill="#A8F5D6"/>
+<rect x="454.0" y="86.4" width="114.0" height="6.6" fill="url(#w)"/>
+<text x="511.0" y="75.4" font-size="18" font-weight="600" fill="#FFFFFF" text-anchor="middle">625</text>
+<text x="511.0" y="323.0" font-size="12" fill="#8FB3A2" text-anchor="middle" letter-spacing="1">MAR</text>
+<text x="511.0" y="341.0" font-size="11.5" fill="#A8F5D6" text-anchor="middle">top10 104</text>
+<rect x="588.0" y="259.2" width="114.0" height="42.8" fill="#144535"/>
+<rect x="588.0" y="259.2" width="114.0" height="42.8" fill="url(#w)"/>
+<rect x="588.0" y="149.9" width="114.0" height="109.4" fill="#2A6E56"/>
+<rect x="588.0" y="149.9" width="114.0" height="109.4" fill="url(#w)"/>
+<rect x="588.0" y="118.5" width="114.0" height="31.4" fill="#00C281"/>
+<rect x="588.0" y="118.5" width="114.0" height="31.4" fill="url(#w)"/>
+<rect x="588.0" y="111.9" width="114.0" height="6.6" fill="#A8F5D6"/>
+<rect x="588.0" y="111.9" width="114.0" height="6.6" fill="url(#w)"/>
+<text x="645.0" y="100.9" font-size="18" font-weight="600" fill="#FFFFFF" text-anchor="middle">551</text>
+<text x="645.0" y="323.0" font-size="12" fill="#8FB3A2" text-anchor="middle" letter-spacing="1">ABR</text>
+<text x="645.0" y="341.0" font-size="11.5" fill="#A8F5D6" text-anchor="middle">top10 110</text>
+<rect x="722.0" y="279.2" width="114.0" height="22.8" fill="#144535"/>
+<rect x="722.0" y="279.2" width="114.0" height="22.8" fill="url(#w)"/>
+<rect x="722.0" y="196.4" width="114.0" height="82.8" fill="#2A6E56"/>
+<rect x="722.0" y="196.4" width="114.0" height="82.8" fill="url(#w)"/>
+<rect x="722.0" y="164.0" width="114.0" height="32.4" fill="#00C281"/>
+<rect x="722.0" y="164.0" width="114.0" height="32.4" fill="url(#w)"/>
+<rect x="722.0" y="160.6" width="114.0" height="3.5" fill="#A8F5D6"/>
+<rect x="722.0" y="160.6" width="114.0" height="3.5" fill="url(#w)"/>
+<text x="779.0" y="149.6" font-size="18" font-weight="600" fill="#FFFFFF" text-anchor="middle">410</text>
+<text x="779.0" y="323.0" font-size="12" fill="#8FB3A2" text-anchor="middle" letter-spacing="1">MAI</text>
+<text x="779.0" y="341.0" font-size="11.5" fill="#A8F5D6" text-anchor="middle">top10 104</text>
+<rect x="856.0" y="285.8" width="114.0" height="16.2" fill="#144535"/>
+<rect x="856.0" y="285.8" width="114.0" height="16.2" fill="url(#w)"/>
+<rect x="856.0" y="234.7" width="114.0" height="51.1" fill="#2A6E56"/>
+<rect x="856.0" y="234.7" width="114.0" height="51.1" fill="url(#w)"/>
+<rect x="856.0" y="217.5" width="114.0" height="17.2" fill="#00C281"/>
+<rect x="856.0" y="217.5" width="114.0" height="17.2" fill="url(#w)"/>
+<rect x="856.0" y="215.4" width="114.0" height="2.1" fill="#A8F5D6"/>
+<rect x="856.0" y="215.4" width="114.0" height="2.1" fill="url(#w)"/>
+<text x="913.0" y="204.4" font-size="18" font-weight="600" fill="#FFFFFF" text-anchor="middle">251</text>
+<text x="913.0" y="323.0" font-size="12" fill="#8FB3A2" text-anchor="middle" letter-spacing="1">JUN</text>
+<text x="913.0" y="341.0" font-size="11.5" fill="#E5007D" text-anchor="middle">top10 56</text>
+<rect x="990.0" y="290.6" width="114.0" height="11.4" fill="#144535"/>
+<rect x="990.0" y="290.6" width="114.0" height="11.4" fill="url(#w)"/>
+<rect x="990.0" y="262.7" width="114.0" height="27.9" fill="#2A6E56"/>
+<rect x="990.0" y="262.7" width="114.0" height="27.9" fill="url(#w)"/>
+<rect x="990.0" y="258.2" width="114.0" height="4.5" fill="#00C281"/>
+<rect x="990.0" y="258.2" width="114.0" height="4.5" fill="url(#w)"/>
+<rect x="990.0" y="256.5" width="114.0" height="1.7" fill="#A8F5D6"/>
+<rect x="990.0" y="256.5" width="114.0" height="1.7" fill="url(#w)"/>
+<text x="1047.0" y="245.5" font-size="18" font-weight="600" fill="#FFFFFF" text-anchor="middle">132</text>
+<text x="1047.0" y="323.0" font-size="12" fill="#8FB3A2" text-anchor="middle" letter-spacing="1">JUL 26</text>
+<text x="1047.0" y="341.0" font-size="11.5" fill="#E5007D" text-anchor="middle">top10 18</text>
+<line x1="52" y1="302" x2="1104" y2="302" stroke="#00C281" stroke-width="1.5"/>
+<line x1="846.0" y1="18" x2="846.0" y2="302" stroke="#E5007D" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="837.0" y="28" font-size="11" fill="#E5007D" text-anchor="end" letter-spacing="1.2">MIGRAÇÃO 10/07</text>
+</svg>
+    </div>
+    <div class="leg">
+      <span><i style="background:#A8F5D6"></i>Posições 1–3</span>
+      <span><i style="background:#00C281"></i>4–10</span>
+      <span><i style="background:#2A6E56"></i>11–50</span>
+      <span><i style="background:#144535;box-shadow:inset 0 0 0 1px #2A6E56"></i>51–100</span>
+      <span style="color:#E5007D;margin-left:auto">Cobertura mensal de palavras-chave no top 100</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>06</span></div>
+</section>
+
+<!-- ═════ 04 DUAS CURVAS ═════ -->
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Diagnóstico <s>/</s> causa raiz</p>
+    <h2>Não é uma queda. <em>São duas.</em></h2>
+    <div class="cols c2" style="margin-top:.4cqw">
+      <div class="card">
+        <span class="tagline">Curva 1 · fev a mai</span>
+        <h4>A cauda longa caiu por sazonalidade</h4>
+        <p>A faixa 51–100 sai de <b>278 termos em dezembro para 66 em maio</b> — inteira <i>antes</i> de
+        qualquer mudança no site. São termos de moda praia para consumidor final, cuja demanda desaparece
+        no inverno.</p>
+        <p><b>Custo em tráfego: zero.</b> Hoje os 23 termos entre 51 e 100 entregam nenhuma visita
+        estimada, e os 46 entre 21 e 50 entregam oito.</p>
+      </div>
+      <div class="card mag">
+        <span class="tagline">Curva 2 · fim de maio e junho</span>
+        <h4>O índice encolheu pela metade</h4>
+        <p>Somando 1 a 10, a base tinha <b>110 termos em abril e 104 em maio</b> — estável durante toda a
+        queda da cauda. Em junho vai a 56 e em julho a 18.</p>
+        <p>A janela coincide exatamente com a perda de <b>2.196 páginas do índice entre 29 de maio e
+        12 de junho</b>. <b>Não é perda de posição: é perda de página indexada.</b> Um termo cuja página
+        saiu do índice desaparece da contagem, mesmo com posição boa.</p>
+      </div>
+    </div>
+    <p class="pull" style="margin-top:1.4cqw"><b>É esta segunda curva que o plano ataca.</b>
+    E ela não pede conteúdo novo: pede recomposição de índice.</p>
+    <div class="note">
+      <span><b>Custo em tráfego da curva 1:</b> os 23 termos entre 51 e 100 entregam nenhuma visita
+      estimada, e as consultas correspondentes aparecem com centenas de impressões e zero clique.</span>
+      <span><b>Custo da curva 2:</b> esse é o que importa, e é onde o plano dos 90 dias está concentrado.</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>07</span></div>
+</section>
+
+<!-- ═════ 05 A LINHA DE CORREÇÃO ═════ -->
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Diagnóstico <s>/</s> linha de correção</p>
+    <h2>Quatro movimentos, nesta ordem</h2>
+    <p class="sub">Nenhum deles exige escrever um artigo. Todos recuperam sinal que o site já teve.</p>
+    <ol class="steps" style="margin-top:.4cqw">
+      <li><span class="n">01</span><div><b>Mapa de destino dos 450 endereços em /br/</b>
+      <span>Rastreamento de status e uma planilha endereço a endereço: equivalente na arquitetura atual ou encerramento. Consolida 38% das
+      impressões num endereço só e resolve os seis artigos duplicados de uma vez.
+      <i>Leitura em 6 a 8 semanas. Começa ainda em agosto.</i></span></div></li>
+
+      <li><span class="n">02</span><div><b>Derrubar o tempo de resposta do servidor para menos de 0,6 s</b>
+      <span>Hoje em 2,8 s no celular. É a condição de tudo: enquanto ele estiver alto, cada redirecionamento
+      aplicado leva semanas a mais para ser processado. <i>Leitura em 4 semanas.</i></span></div></li>
+
+      <li><span class="n">03</span><div><b>Tirar os 1.107 endereços de orçamento do rastreamento</b>
+      <span>São 46,3% de todo o inventário servindo o mesmo formulário. Devolve quase metade da capacidade
+      de rastreamento ao catálogo e ao blog — que é o que precisa ser reindexado.
+      <i>Leitura em 4 a 6 semanas.</i></span></div></li>
+
+      <li><span class="n">04</span><div><b>Recuperar os endereços de blog sem equivalente</b>
+      <span>Republicar, redirecionar ou encerrar, artigo a artigo. Devolve o histórico da seção que mais
+      gerava topo de funil e recupera os <b>90 links editoriais</b> que apontam para lá.
+      <i>Leitura em 6 a 8 semanas.</i></span></div></li>
+    </ol>
+    <div class="note">
+      <span><b>A ordem importa.</b> Bloquear no robots.txt impede rastrear, mas não remove do índice.
+      No item 4, primeiro entra o noindex; o bloqueio só depois que as URLs saírem do índice.
+      Fazer os dois juntos anula o efeito.</span>
+      <span><b>Prazo de leitura.</b> A janela de dado de campo do Chrome é de 28 dias — correção publicada
+      hoje aparece no indicador em cerca de quatro semanas.</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>08</span></div>
+</section>
+
+<section class="s dark">
+  <div class="body">
+    <p class="eyebrow">A maior oportunidade do trimestre</p>
+    <h2>A Texneo aparece. <em>Falta ser escolhida.</em></h2>
+    <div class="kpis k4" style="margin-top:.4cqw">
+      <div class="kpi"><b>35</b><span>páginas na 1ª página<br>com CTR abaixo de 3%</span></div>
+      <div class="kpi"><b>119.522</b><span>impressões que elas<br>somam em 90 dias</span></div>
+      <div class="kpi neg"><b>913</b><span>cliques que elas<br>entregam hoje</span></div>
+      <div class="kpi win"><b>5,57%</b><span>é o CTR médio do site<br>a régua de comparação</span></div>
+    </div>
+    <table class="dense" style="margin-top:1.1cqw">
+      <thead><tr><th>Página</th><th class="n">Impressões</th><th class="n">Cliques</th><th class="n">CTR</th><th class="n">Posição</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td><small>/br/blog/simbolos-de-lavagem-o-que-significam-/457/</small></td><td class="n">30.761</td><td class="n">199</td><td class="n"><span class="p pno">0,65%</span></td><td class="n">6,4º</td></tr>
+        <tr class="hi"><td><small>/blog/melhor-tecido-para-academia-…</small></td><td class="n">15.217</td><td class="n">58</td><td class="n"><span class="p pno">0,38%</span></td><td class="n">7,5º</td></tr>
+        <tr><td><small>/br/blog/qual-o-melhor-tecido-para-roupa-de-academia-…</small></td><td class="n">6.990</td><td class="n">61</td><td class="n"><span class="p pno">0,87%</span></td><td class="n">4,9º</td></tr>
+        <tr><td><small>/quem-somos</small></td><td class="n">6.556</td><td class="n">55</td><td class="n"><span class="p pno">0,84%</span></td><td class="n">2,6º</td></tr>
+        <tr><td><small>/blog/saiba-como-calcular-o-rendimento-do-tecido</small></td><td class="n">5.451</td><td class="n">58</td><td class="n"><span class="p pno">1,06%</span></td><td class="n">4,7º</td></tr>
+        <tr><td><small>/br/blog/poliamida-ou-poliester-entenda-as-diferencas/532/</small></td><td class="n">4.554</td><td class="n">18</td><td class="n"><span class="p pno">0,40%</span></td><td class="n">7,6º</td></tr>
+        <tr><td><small>/segmentos/sportswear · /segmentos/beachwear</small></td><td class="n">7.200</td><td class="n">77</td><td class="n"><span class="p pno">1,07%</span></td><td class="n">3,3–3,6º</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <span><b>Se essas páginas tivessem o CTR médio do próprio site</b>, entregariam cerca de 6.000 cliques
+      no trimestre em vez de 913. Não é promessa — é a ordem de grandeza do que está parado.</span>
+      <span><b>A correção é reescrever título e descrição.</b> Uma pessoa faz 30 páginas em dois dias,
+      e não consome nenhum artigo do orçamento editorial.</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>09</span></div>
+</section>
+
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Por que o clique não vem</p>
+    <h2>Quatro causas, quatro correções diferentes</h2>
+    <div class="cols c2" style="margin-top:.4cqw;align-items:stretch">
+      <div class="card">
+        <span class="tagline">1 · não custa artigo</span>
+        <h4>Título e descrição que não respondem à busca</h4>
+        <p>Página relevante, posição boa, título que não contém a pergunta.
+        <i>/quem-somos</i>: 6.556 impressões na posição 2,6 com 0,84% de CTR.</p>
+      </div>
+      <div class="card">
+        <span class="tagline">2 · não custa artigo</span>
+        <h4>Sinal dividido entre duas URLs</h4>
+        <p>Os seis pares do slide anterior. Nenhuma das duas versões fica forte o suficiente para ganhar
+        o clique. A correção é consolidar e redirecionar.</p>
+      </div>
+      <div class="card mag">
+        <span class="tagline">3 · sem correção possível</span>
+        <h4>Impressão que nunca viraria clique</h4>
+        <p><i>rubro</i> traz 1.331 impressões na posição 4,9 com <b>zero clique</b>: quem busca isso quer
+        o significado da palavra. O mesmo vale para <i>sakay</i>, <i>cloe</i>, <i>aura788</i> e <i>maxxi</i> —
+        nomes de malha que colidem com outras marcas. A ação é não perseguir e excluir da leitura.</p>
+      </div>
+      <div class="card">
+        <span class="tagline">4 · custa parcialmente</span>
+        <h4>Concorrência de formato na página de resultado</h4>
+        <p><i>Símbolos de lavagem</i>: 2.149 impressões, 2 cliques. A busca devolve tabelas de imagem e
+        resumos gerados antes do primeiro link azul.</p>
+      </div>
+    </div>
+    <div class="note">
+      <span><b>Um dado que sustenta a aposta:</b> a Texneo já aparece com resultado enriquecido de produto em 487
+      impressões, com <b>CTR de 7,39% na posição 5,0</b> — quase dez vezes o CTR das consultas sem marca,
+      na mesma faixa de posição. O problema é de apresentação, não de relevância.</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>10</span></div>
+</section>
+
+<section class="s dark">
+  <div class="body" style="justify-content:center">
+    <p class="eyebrow">Desempenho na busca <s>/</s> marca e não-marca</p>
+    <h2 style="font-size:3.4cqw;max-width:32ch">95% dos cliques vêm de <em>quem já conhece a Texneo</em></h2>
+    <table class="roomy" style="margin-top:1cqw">
+      <thead><tr><th>Tipo de consulta</th><th class="n">Consultas</th><th class="n">Cliques</th><th class="n">Impressões</th><th class="n">CTR</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td><b>Com o nome da marca</b><br><small>texneo, tex neo, texneo tecidos, farbe, textil farbe…</small></td>
+        <td class="n">52</td><td class="n">5.260 <small>(95,1%)</small></td><td class="n">13.444 <small>(27,3%)</small></td><td class="n">39,13%</td></tr>
+        <tr><td><b>Sem o nome da marca</b><br><small>tecido para academia, símbolos de lavagem, poliamida…</small></td>
+        <td class="n">948</td><td class="n">271 <small>(4,9%)</small></td><td class="n">35.772 <small>(72,7%)</small></td><td class="n"><span class="p pno">0,76%</span></td></tr>
+      </tbody>
+    </table>
+    <div class="cols c2" style="flex:0;margin-top:1.2cqw;align-items:stretch">
+      <div class="card">
+        <span class="tagline">O que o orgânico é hoje</span>
+        <p>Um canal de <b>quem já conhece a marca</b>: cliente que procura o portal, candidato que procura
+        vaga, comprador que procura o nome de uma malha. A home sozinha responde por 5.113 cliques —
+        metade de tudo.</p>
+      </div>
+      <div class="card fio">
+        <span class="tagline">Onde está a aquisição</span>
+        <p>Na linha de baixo: 948 consultas, 35.772 impressões, 271 cliques.
+        <b>A vitrine já existe. O trabalho dos próximos doze meses é converter vitrine em visita</b> —
+        e é por isso que a meta de ranqueamento foi construída sobre termos sem marca.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>11</span></div>
+</section>
+
+<!-- ═════ 06 COMPOSIÇÃO ═════ -->
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Composição <s>/</s> o que estava sendo medido</p>
+    <h2>Metade da base que caiu <em>nunca foi da Texneo</em></h2>
+    <p class="sub">A cobertura mensal recolhe tudo em que o domínio aparece no top 100, sem nenhum filtro
+    de relevância comercial.</p>
+
+    <div class="compbar">
+      <div style="width:46.4%;background:#8FA79B">46% · marcas de terceiros</div>
+      <div style="width:23.8%;background:#C46A93">24% · consumidor final</div>
+      <div style="width:9.5%;background:#2F6E56"></div>
+      <div style="width:9.5%;background:#4A7F9E"></div>
+      <div style="width:8.4%;background:#00A870"></div>
+      <div style="width:2.4%;background:#004F37"></div>
+    </div>
+    <div class="compkey">
+      <span><i style="background:#8FA79B"></i>Marcas de terceiros · 39</span>
+      <span><i style="background:#C46A93"></i>Consumidor final · 20</span>
+      <span><i style="background:#2F6E56"></i>Fitness B2B · 8</span>
+      <span><i style="background:#4A7F9E"></i>Técnico · 8</span>
+      <span><i style="background:#00A870"></i>Praia B2B · 7</span>
+      <span><i style="background:#004F37"></i>Marca própria · 2</span>
+    </div>
+
+    <div class="cols c3" style="flex:1">
+      <div class="card mag">
+        <span class="tagline">39 dos 84 termos</span>
+        <h4>São nomes de outras empresas</h4>
+        <p>Falcon Têxtil, Incotex, Salotex, Texblun, Vega Têxtil. Somam <b>16.940 buscas por mês</b>,
+        ranqueiam na home em 26º e entregam <b>16 visitas</b>. Quem procura um concorrente pelo nome
+        não vira cliente por encontrar a Texneo em 26º.</p>
+      </div>
+      <div class="card mag">
+        <span class="tagline">20 dos 84 termos</span>
+        <h4>São o público errado</h4>
+        <p><i>Biquíni praia</i>, <i>roupas de praia</i>, <i>tanga para praia</i>. Metade de todo o volume
+        da base — <b>24.600 buscas</b> — e 2 visitas. Quem busca biquíni quer comprar biquíni,
+        não malha por quilo.</p>
+      </div>
+      <div class="card fio">
+        <span class="tagline">Os 25 que sobram</span>
+        <h4>São a base estratégica</h4>
+        <p>Retirando concorrente e consumidor final, restam <b>25 termos comercialmente corretos</b> —
+        fitness, praia B2B, técnico e marca. São eles que passam a ser medidos, ampliados para
+        <b>45 termos</b> na régua nova.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>12</span></div>
+</section>
+
+<!-- ═════ 07 CONCENTRAÇÃO ═════ -->
+<section class="s dark">
+  <div class="body">
+    <p class="eyebrow">Composição <s>/</s> concentração de risco</p>
+    <h2>92% do tráfego orgânico estimado vem de <em>dois termos de marca</em></h2>
+
+    <div class="cols c2c" style="margin-top:.6cqw">
+      <div>
+        <div class="kpis k2">
+          <div class="kpi"><b>294</b><span>das 387 visitas<br>vêm de "textil farbe"</span></div>
+          <div class="kpi"><b>76%</b><span>do tráfego orgânico<br>num só termo</span></div>
+        </div>
+        <div class="kpis k2" style="margin-top:.75cqw">
+          <div class="kpi"><b>25</b><span>termos comercialmente<br>corretos na base inteira</span></div>
+          <div class="kpi"><b>2</b><span>deles respondem por<br>92% do tráfego</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tagline">Identidade da marca</span>
+        <h4>A entidade está dividida em dois nomes</h4>
+        <p>A razão social é <b>Têxtil Farbe S.A.</b> e a marca comercial é <b>Texneo</b>. Para o buscador e
+        para os modelos de linguagem, hoje, são duas entidades diferentes: no monitoramento de IA,
+        "Farbe Têxtil" aparece citada <i>separadamente</i> da Texneo, com posição própria.</p>
+        <p>O ativo de busca mais forte do site está preso ao nome antigo, e cada citação de "Farbe" é uma
+        citação que não conta para a Texneo.</p>
+        <p style="color:var(--fio)"><b>Correção de baixo custo:</b> declarar o nome alternativo nos dados
+        estruturados, fixar um identificador estável, ampliar os perfis vinculados e dizer em texto visível,
+        na página de história, que Texneo é a marca da Têxtil Farbe desde 1994.</p>
+      </div>
+    </div>
+    <div class="note">
+      <span><b>Os links confirmam:</b> 77 dos 394 backlinks usam "farbe" como texto de âncora, contra 151
+      que usam "texneo". Um deles vem do curso de Engenharia Têxtil da UFSC Blumenau, com autoridade 89.</span>
+      <span><b>E as consultas</b> "farbe" e "textil farbe" somam 200 cliques em 90 dias — tráfego real
+      chegando pelo nome antigo.</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>13</span></div>
+</section>
+
+<!-- ═════ 08 DIVISÓRIA METAS ═════ -->
+<section class="s dark divider">
+  <div class="warp"></div>
+  <div class="body" style="position:relative;z-index:2">
+    <div class="num">01</div>
+    <h2>Metas de ranqueamento</h2>
+    <p class="sub">A régua que passa a valer a partir de setembro, com meta declarada por trimestre.</p>
+  </div>
+</section>
+
+<!-- ═════ 09 O PEDIDO ═════ -->
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Metas <s>/</s> o pedido</p>
+    <div class="cols c2b" style="align-items:center">
+      <div>
+        <p class="pull" style="font-size:1.9cqw">"No report senti falta das <b>metas de SEO sobre
+        ranqueamento de palavras-chave</b>. Mês a mês temos o relatório, mas <b>não sei qual seria o ideal
+        para nós</b>. Conseguimos incluir essa visão também nos reports?"</p>
+        <p style="font-family:var(--mono);font-size:1cqw;color:var(--mid);letter-spacing:.1em;
+        margin:1.2cqw 0 0 1.4cqw">— ANA ARAGÃO · RETORNO DE COLABORAÇÃO</p>
+      </div>
+      <div class="card fio">
+        <span class="tagline">A partir de setembro</span>
+        <h4>A base sobre a qual a meta é construída importa</h4>
+        <p>Uma meta sobre a cobertura de 132 termos seria uma meta sobre ruído: <b>46% deles são nomes de
+        concorrentes</b> e <b>24% são consumidor final de moda praia</b>. O número subiria e desceria por
+        movimentos de termos que não pertencem ao negócio.</p>
+        <p>Por isso a meta passa a ser medida sobre uma <b>base estratégica de 45 termos</b>, escolhidos
+        por relevância comercial, com meta declarada por trimestre e leitura mensal.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>15</span></div>
+</section>
+
+<!-- ═════ 10 A BASE ═════ -->
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Metas <s>/</s> camada 1</p>
+    <h2>A base estratégica: <em>45 termos, 6 clusters</em></h2>
+    <p class="sub">Dois critérios: o termo descreve algo que a Texneo vende, e quem digita pode virar cliente.
+    Cada cluster tem uma página do site como destino — a meta também é um teste da arquitetura.</p>
+    <table class="roomy" style="margin-top:.2cqw">
+      <thead><tr><th>Cluster</th><th class="n">Termos</th><th>Página de destino</th><th>Situação hoje</th></tr></thead>
+      <tbody>
+        <tr><td><b>A · Marca e entidade</b></td><td class="n">6</td><td><small>/ e /nossa-historia</small></td>
+        <td>2 termos em 1º. O risco é a entidade dividida entre dois nomes.</td></tr>
+        <tr class="hi"><td><b>B · Sportswear e fitness</b></td><td class="n">10</td><td><small>/segmentos/sportswear + blog</small></td>
+        <td>4 termos entre 8º e 19º. O cluster mais maduro e o mais barato de subir.</td></tr>
+        <tr class="hi"><td><b>C · Beachwear B2B</b></td><td class="n">8</td><td><small>/segmentos/beachwear</small></td>
+        <td>7 termos entre 55º e 70º, todos numa URL da arquitetura antiga.</td></tr>
+        <tr><td><b>D · Bases e tecnologias</b></td><td class="n">8</td><td><small>/bases-texneo/* e /tecnologias</small></td>
+        <td>1 termo em 21º. As sete páginas existem e não têm texto para ranquear.</td></tr>
+        <tr><td><b>E · Underwear e lingerie</b></td><td class="n">5</td><td><small>/segmentos/underwear</small></td>
+        <td>Nenhum termo no top 100. Segmento sem cobertura de conteúdo.</td></tr>
+        <tr><td><b>F · Compra e operação B2B</b></td><td class="n">8</td><td><small>/produtos, /downloads e blog</small></td>
+        <td>Conteúdo existe, disperso e duplicado entre duas URLs em três casos.</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <span><b>18 dos 45 termos</b> já ranqueiam no top 100. Os 27 restantes não aparecem em nenhuma faixa
+      monitorada — a ausência é a evidência de que não ranqueiam nas 100 primeiras posições.</span>
+      <span><b>Lista completa</b>, termo a termo, com volume, posição e URL: anexo A2 do relatório.</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>16</span></div>
+</section>
+
+<!-- ═════ 11 O PAINEL ═════ -->
+<section class="s dark">
+  <div class="body">
+    <p class="eyebrow">Metas <s>/</s> camada 2</p>
+    <h2>O painel de oito números</h2>
+    <p class="sub">É o quadro que passa a abrir a seção de SEO do report mensal. Oito linhas, três
+    horizontes, um número por célula — e as duas de clique e CTR devem se mover primeiro.</p>
+    <table class="dense" style="margin-top:.2cqw">
+      <thead><tr><th>Indicador</th><th class="n">Base ago 26</th><th class="n">Dez 26</th><th class="n">Mar 27</th><th class="n">Ago 27</th><th>Como se lê</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td><b>Termos no top 3</b></td><td class="n">2</td><td class="n">4</td><td class="n">7</td>
+        <td class="n" style="color:#00C281">11</td><td>Onde está o clique.</td></tr>
+        <tr class="hi"><td><b>Termos no top 10</b></td><td class="n">4</td><td class="n">10</td><td class="n">16</td>
+        <td class="n" style="color:#00C281">24</td><td><b>O indicador principal.</b> Mais da metade da base na 1ª página.</td></tr>
+        <tr><td>Termos no top 20</td><td class="n">6</td><td class="n">18</td><td class="n">26</td>
+        <td class="n" style="color:#00C281">34</td><td>Indicador antecedente: mostra o movimento antes do clique.</td></tr>
+        <tr><td>Termos fora do top 100</td><td class="n">27</td><td class="n">15</td><td class="n">8</td>
+        <td class="n" style="color:#00C281">3</td><td>Mede cobertura. Cai quando as páginas ganham texto próprio.</td></tr>
+        <tr class="hi"><td><b>Cliques orgânicos por mês</b></td><td class="n">3.100</td><td class="n">3.700</td><td class="n">4.600</td>
+        <td class="n" style="color:#00C281">6.000</td><td>O número de resultado. Hoje 95% dele é marca.</td></tr>
+        <tr class="hi"><td><b>CTR das consultas sem marca</b></td><td class="n">0,76%</td><td class="n">1,3%</td><td class="n">2,0%</td>
+        <td class="n" style="color:#00C281">3,0%</td><td><b>O indicador mais importante da lista.</b> Mede se a vitrine vira visita.</td></tr>
+        <tr><td>Usuários orgânicos no site</td><td class="n">2.430</td><td class="n">2.900</td><td class="n">3.600</td>
+        <td class="n" style="color:#00C281">4.800</td><td>A leitura pelo lado do site, com 2 a 3 meses de defasagem.</td></tr>
+        <tr><td>Catálogo entre as 10 principais entradas</td><td class="n">1</td><td class="n">2</td><td class="n">4</td>
+        <td class="n" style="color:#00C281">5</td><td>Mede se o orgânico deixou de depender da home.</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <span><b>Meta de trabalho, não garantia de colocação.</b> A agência controla a entrega; a posição
+      depende também de concorrente e de algoritmo.</span>
+      <span><b>A base de 45 termos não muda dentro do trimestre.</b> Revisão fixa na primeira semana
+      de janeiro, abril, julho e outubro.</span>
+      <span><b>Mesma fonte, mesmo dia do mês.</b> Sempre entre os dias 18 e 21. Fontes diferentes
+      dão números diferentes para o mesmo termo, e isso não é erro.</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>17</span></div>
+</section>
+
+<!-- ═════ 12 CALIBRAGEM + REGRAS ═════ -->
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Metas <s>/</s> calibragem e regras</p>
+    <h2>De onde saem esses números</h2>
+    <div class="cols c2" style="margin-top:.3cqw">
+      <div>
+        <div class="card fio" style="margin-bottom:.8cqw">
+          <span class="tagline">Dezembro é carregado pela consolidação</span>
+          <p>Quatro termos do cluster B já estão entre 8º e 19º com o conteúdo repartido em <b>três URLs</b>,
+          e os seis pares duplicados somam 16.611 impressões com 0,74% de CTR. Juntar cada par e reescrever
+          título <b>resolve sem escrever nada novo</b>.</p>
+        </div>
+        <div class="card fio" style="margin-bottom:.8cqw">
+          <span class="tagline">Cluster C carrega março</span>
+          <p>Sete termos em 55º–70º numa URL antiga. O redirecionamento mais a reescrita da página de
+          segmento coincide com a temporada de moda praia, que sobe a partir de novembro.
+          <b>É a única meta com vento a favor de calendário.</b></p>
+        </div>
+        <div class="card fio">
+          <span class="tagline">D, E e F carregam agosto de 2027</span>
+          <p>21 termos sem posição, cujas páginas <b>já existem</b> e só precisam de texto, perguntas e
+          respostas, e ligação interna. Trabalho de volume, horizonte longo.</p>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tagline">Camada 3 · as regras que tornam a meta honesta</span>
+        <ol class="steps" style="gap:.7cqw;margin-top:.5cqw">
+          <li><span class="n">1</span><div><b>Meta é meta de trabalho, não garantia de colocação.</b>
+          <span>A agência controla a entrega. A posição depende também de concorrente e de algoritmo.</span></div></li>
+          <li><span class="n">2</span><div><b>Correção técnica é condição, não fator de posição.</b>
+          <span>Rastreamento permite ser visto; não empurra ninguém para cima sozinho.</span></div></li>
+          <li><span class="n">3</span><div><b>A base não muda dentro do trimestre.</b>
+          <span>Trocar termos no meio e comparar é fabricar resultado. Revisão em jan, abr, jul e out.</span></div></li>
+          <li><span class="n">4</span><div><b>Mesma fonte, mesmo dia do mês.</b>
+          <span>Sempre entre os dias 18 e 21. Fontes diferentes dão números diferentes, e isso não é erro.</span></div></li>
+          <li><span class="n">5</span><div><b>Correção de hoje aparece no dado em 4 semanas.</b>
+          <span>A janela de dado de campo é de 28 dias. Um mês sem movimento é o esperado.</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>18</span></div>
+</section>
+
+<!-- ═════ 13 DIVISÓRIA PERFORMANCE ═════ -->
+<section class="s dark divider">
+  <div class="warp"></div>
+  <div class="body" style="position:relative;z-index:2">
+    <div class="num">02</div>
+    <h2>Performance orgânica</h2>
+    <p class="sub">Medição do site institucional · 1 a 31 de julho de 2026 · 8.868 sessões e 302 páginas de entrada.</p>
+  </div>
+</section>
+
+<!-- ═════ 14 CANAIS ═════ -->
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Performance <s>/</s> aquisição</p>
+    <h2>De onde vem o tráfego</h2>
+    <table style="margin-top:.4cqw">
+      <thead><tr><th>Canal</th><th class="n">Usuários</th><th class="n">%</th><th class="n">Novos</th><th class="n">Engajamento</th><th class="n">Conversões</th><th>Leitura</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td><b>Busca orgânica</b></td><td class="n">2.430</td><td class="n">47,8%</td><td class="n">1.987</td><td class="n">2min12s</td><td class="n">30</td>
+        <td>O maior canal e o que mais converte: 93,8% das conversões do mês.</td></tr>
+        <tr><td>Direto</td><td class="n">2.026</td><td class="n">39,8%</td><td class="n">1.860</td><td class="n">1min15s</td><td class="n">1</td>
+        <td>Inflado pela área restrita — ver próximo slide.</td></tr>
+        <tr><td>Referência</td><td class="n">508</td><td class="n">10,0%</td><td class="n">492</td><td class="n">57s</td><td class="n">1</td>
+        <td>Engajamento baixo e quase só usuário novo.</td></tr>
+        <tr><td>Social orgânico</td><td class="n">55</td><td class="n">1,1%</td><td class="n">54</td><td class="n">35s</td><td class="n">0</td>
+        <td>Volume marginal para um perfil ativo.</td></tr>
+        <tr class="hi"><td><b>Assistente de IA</b></td><td class="n">51</td><td class="n">1,0%</td><td class="n">50</td>
+        <td class="n" style="color:#00A870">2min21s</td><td class="n">0</td>
+        <td><b>O melhor engajamento do site.</b> Pouco volume, qualidade mais alta que o orgânico.</td></tr>
+      </tbody>
+    </table>
+    <div class="card fio" style="margin-top:1.1cqw">
+      <span class="tagline">Registro do mês</span>
+      <p>A medição do site já reconhece <b>assistente de IA como canal próprio</b> e ele entrega o maior tempo de
+      engajamento do site — mais que orgânico, mais que direto. São 51 usuários, volume pequeno, qualidade
+      mais alta. É o dado próprio que justifica a frente de GEO, e não uma aposta de tendência.</p>
+    </div>
+    <div class="note">
+      <span><b>Os 39,8% de tráfego direto</b> incluem 903 sessões de área restrita. A leitura de aquisição
+      passa a usar, a partir de setembro, um segmento permanente que exclui as rotas de login.</span>
+      <span><b>Período:</b> 1 a 31 de julho de 2026, site institucional.</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>20</span></div>
+</section>
+
+<!-- ═════ 15 PÁGINAS DE ENTRADA ═════ -->
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Performance <s>/</s> páginas de entrada</p>
+    <h2>O catálogo <em>não entra na busca</em></h2>
+    <div class="cols c2c">
+      <div>
+        <table>
+          <thead><tr><th class="n">#</th><th>Página</th><th class="n">Sessões</th><th class="n">Engaj.</th></tr></thead>
+          <tbody>
+            <tr><td class="n">1</td><td><small>/</small></td><td class="n">3.892</td><td class="n">1min14s</td></tr>
+            <tr><td class="n">2</td><td><small>(not set)</small> <span class="p pno">falha</span></td><td class="n">815</td><td class="n">15s</td></tr>
+            <tr><td class="n">3</td><td><small>/texneogreen</small></td><td class="n">696</td><td class="n">25s</td></tr>
+            <tr><td class="n">4</td><td><small>/downloads</small></td><td class="n">336</td><td class="n">54s</td></tr>
+            <tr><td class="n">5</td><td><small>/acesso</small> <span class="p p50">login</span></td><td class="n">324</td><td class="n">30s</td></tr>
+            <tr><td class="n">6</td><td><small>/painel-grades-por-linha</small> <span class="p p50">login</span></td><td class="n">236</td><td class="n">47s</td></tr>
+            <tr><td class="n">7</td><td><small>/grades-texneo</small> <span class="p p50">login</span></td><td class="n">211</td><td class="n">46s</td></tr>
+            <tr class="hi"><td class="n">8</td><td><small>/produtos</small></td><td class="n">163</td><td class="n">1min15s</td></tr>
+            <tr><td class="n">9</td><td><small>/painel-grades-por-linha/texneo</small> <span class="p p50">login</span></td><td class="n">132</td><td class="n">41s</td></tr>
+            <tr><td class="n">10</td><td><small>/trabalhe-conosco</small></td><td class="n">124</td><td class="n">46s</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="kpis k3" style="margin:0 0 .9cqw">
+          <div class="kpi"><b>123</b><span>páginas de produto</span></div>
+          <div class="kpi"><b>11</b><span>segmentos e bases</span></div>
+          <div class="kpi"><b>22</b><span>artigos vivos</span></div>
+        </div>
+        <div class="card mag" style="margin-bottom:.8cqw">
+          <h4>Nenhuma delas está no top 10</h4>
+          <p>Mais de 150 endereços comerciais, cada um cobrindo um produto ou categoria que alguém procura pelo
+          nome. A única página de catálogo que aparece é <i>/produtos</i>, em 8º — e com o melhor tempo de
+          engajamento da lista.</p>
+        </div>
+        <div class="card">
+          <h4>903 sessões são área restrita</h4>
+          <p>10,2% do site é cliente logado, o que explica boa parte dos 39,8% de tráfego direto e distorce
+          toda média. E as <b>815 sessões em "(not set)"</b> são um buraco de medição de 9,2% —
+          zero usuário novo e 15 segundos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>21</span></div>
+</section>
+
+<!-- ═════ 16 CONVERSÃO ═════ -->
+<section class="s dark">
+  <div class="body">
+    <p class="eyebrow">Performance <s>/</s> medição</p>
+    <h2>A conversão está <em>mal medida</em>, não baixa</h2>
+    <div class="cols c2" style="margin-top:.5cqw;align-items:center">
+      <div>
+        <div class="kpis k2">
+          <div class="kpi neg"><b>0,18%</b><span>taxa de conversão declarada<br>32 eventos principais</span></div>
+          <div class="kpi win"><b>5,5%</b><span>ação comercial real<br>278 pessoas baixaram material</span></div>
+        </div>
+        <table style="margin-top:1.1cqw">
+          <thead><tr><th>Evento em julho</th><th class="n">Ações</th><th class="n">Pessoas</th><th class="n">É conversão?</th></tr></thead>
+          <tbody>
+            <tr class="hi"><td><b>file_download</b></td><td class="n">539</td><td class="n">278</td><td class="n"><span class="p pno">não</span></td></tr>
+            <tr><td>click</td><td class="n">1.664</td><td class="n">1.082</td><td class="n"><span class="p pno">não</span></td></tr>
+            <tr class="hi"><td><b>RD Popup e WhatsApp</b></td><td class="n">17</td><td class="n">12</td><td class="n"><span class="p pno">não</span></td></tr>
+            <tr><td>RD Landing Pages</td><td class="n">32</td><td class="n">10</td><td class="n"><span class="p p3">sim · único</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <span class="tagline">O que está acontecendo</span>
+        <h4>Os 32 "eventos principais" são 32 passagens por uma landing page do RD</h4>
+        <p>Dez pessoas. É a única ação contada hoje como conversão.</p>
+        <p>No mesmo mês, <b>278 pessoas baixaram material</b> — Ecobook, Book de Estamparia, Relatório de
+        Sustentabilidade — e doze clicaram no botão de WhatsApp, que é o principal caminho comercial do
+        site inteiro. Nada disso é contado.</p>
+        <p style="color:var(--fio)"><b>A queda de 90,5% contra o período anterior</b> é, com alta
+        probabilidade, uma marcação de evento perdida na migração — não uma queda de desempenho.
+        Correção entra em setembro e leva menos de um dia de trabalho.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>22</span></div>
+</section>
+
+<!-- ═════ 17 DIVISÓRIA GEO ═════ -->
+<section class="s dark divider">
+  <div class="warp"></div>
+  <div class="body" style="position:relative;z-index:2">
+    <div class="num">03</div>
+    <h2>Presença nas inteligências artificiais</h2>
+    <p class="sub">15 prompts de compra do setor · 60 respostas · ChatGPT, Gemini e Google AI Overview.</p>
+  </div>
+</section>
+
+<!-- ═════ 18 GEO RANKING ═════ -->
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">GEO <s>/</s> posição no setor</p>
+    <h2>A Texneo é a <em>marca têxtil mais citada</em> do painel</h2>
+    <div class="cols c2c">
+      <div>
+        <div class="kpis k2">
+          <div class="kpi win"><b>17%</b><span>visibilidade da marca<br>+10 pontos no período</span></div>
+          <div class="kpi win"><b>3,80%</b><span>share of voice<br>o maior do painel</span></div>
+        </div>
+        <div class="kpis k2" style="margin-top:.75cqw">
+          <div class="kpi"><b>2,14</b><span>posição média de citação<br>quando aparece, aparece cedo</span></div>
+          <div class="kpi neg"><b>0</b><span>aparições em<br>Google AI Overview</span></div>
+        </div>
+        <div class="card fio" style="margin-top:.9cqw">
+          <p>Vale dizer sem rodeio: entre as marcas do setor têxtil monitoradas, <b>a Texneo lidera</b> —
+          à frente de Diklatex, Grupo Rosset, Santaconstancia e Soutex.</p>
+        </div>
+      </div>
+      <table>
+        <thead><tr><th class="n">#</th><th>Marca</th><th class="n">Visib.</th><th class="n">Share</th><th class="n">Pos. média</th></tr></thead>
+        <tbody>
+          <tr class="hi"><td class="n">1</td><td><b>Texneo</b></td><td class="n">12%</td><td class="n">3,80%</td><td class="n">2,14</td></tr>
+          <tr><td class="n">2</td><td>Diklatex</td><td class="n">10%</td><td class="n">3,30%</td><td class="n">5,40</td></tr>
+          <tr><td class="n">3</td><td>Grupo Rosset</td><td class="n">8%</td><td class="n">2,70%</td><td class="n">2,20</td></tr>
+          <tr><td class="n">4</td><td>Santaconstancia</td><td class="n">8%</td><td class="n">2,70%</td><td class="n">1,40</td></tr>
+          <tr><td class="n">5</td><td>Soutex Têxtil</td><td class="n">8%</td><td class="n">2,72%</td><td class="n">3,80</td></tr>
+          <tr><td class="n">6</td><td>Ramatex</td><td class="n">7%</td><td class="n">2,17%</td><td class="n">3,75</td></tr>
+          <tr><td class="n">7</td><td>ADS Têxtil</td><td class="n">5%</td><td class="n">1,63%</td><td class="n">3,00</td></tr>
+          <tr><td class="n">8</td><td>Luara Têxtil</td><td class="n">3%</td><td class="n">1,09%</td><td class="n">3,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>24</span></div>
+</section>
+
+<!-- ═════ 19 GEO LACUNA ═════ -->
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">GEO <s>/</s> a fila de trabalho</p>
+    <h2>Citada em 5 prompts. <em>Ausente em 10.</em></h2>
+    <p class="sub">A distribuição não é aleatória — e três das ausências são temas em que a Texneo
+    já tem conteúdo publicado.</p>
+    <table class="dense" style="margin-top:.2cqw">
+      <thead><tr><th>Prompt monitorado</th><th class="n">Visib.</th><th>O que ataca</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>Empresas brasileiras de malhas para moda praia com proteção UV</td><td class="n">75%</td><td>Defender. É o prompt de maior valor comercial.</td></tr>
+        <tr class="hi"><td>Fabricantes que usam fibras como bioamida · Iniciativas sustentáveis em malhas</td><td class="n">25%</td><td>Citada em 1º. Ampliar do Gemini para o ChatGPT.</td></tr>
+        <tr class="hi"><td>Como comprar malha no atacado ou por kg</td><td class="n">25%</td><td>Citada em 2º. É o artigo de outubro.</td></tr>
+        <tr><td><b>Onde comprar malhas tecnológicas e tecidos de alta performance</b></td><td class="n"><span class="p pno">0%</span></td>
+        <td><b>O prompt comercial mais valioso sem citação.</b> 14 marcas aparecem, nenhuma é a Texneo. → hub de perguntas frequentes</td></tr>
+        <tr><td><b>Quais cuidados e símbolos de lavagem devo seguir</b></td><td class="n"><span class="p pno">0%</span></td>
+        <td><b>Zero marcas citadas — campo aberto.</b> A Texneo tem quatro endereços sobre isso, somando 33.000 impressões. → consolidação de outubro</td></tr>
+        <tr><td><b>Quais malhas usar para moda casual e lifewear</b></td><td class="n"><span class="p pno">0%</span></td>
+        <td><b>Zero marcas citadas — campo aberto.</b> A Texneo tem um segmento chamado Lifewear. → texto e FAQ na página</td></tr>
+        <tr><td>Como funciona a estamparia digital em malhas</td><td class="n"><span class="p pno">0%</span></td>
+        <td>Só Photoshop e Illustrator citados. → atualização de janeiro</td></tr>
+        <tr><td>Como escolher malha para legging · Tecidos para lingerie e shapewear</td><td class="n"><span class="p pno">0%</span></td>
+        <td>Emana, Lycra, Rhodia e Ramatex citadas. → artigos de setembro e dezembro</td></tr>
+        <tr><td>Tendências de moda fitness para 2026</td><td class="n"><span class="p pno">0%</span></td>
+        <td>Só WOLFITCO citada. A Texneo tem dois artigos de athleisure, em duas URLs. → consolidação de novembro</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>25</span></div>
+</section>
+
+<!-- ═════ 20 A CONEXÃO ═════ -->
+<section class="s dark">
+  <div class="body" style="justify-content:center">
+    <p class="eyebrow">GEO <s>/</s> a conexão que amarra o plano</p>
+    <h2 style="font-size:3.6cqw;max-width:30ch">Assistentes escolhem <em>um endereço por pergunta</em></h2>
+    <div class="cols c2" style="flex:0;margin-top:1.4cqw">
+      <div class="card">
+        <span class="tagline">O problema</span>
+        <p style="font-size:1.32cqw">Quando o próprio site divide o sinal entre duas páginas parecidas,
+        nenhuma das duas é forte o bastante para ser a escolhida — e a citação vai para um terceiro.</p>
+        <p style="font-size:1.32cqw">A Texneo tem <b>três pares de artigos duplicados</b>: tecido para
+        academia, símbolos de lavagem e athleisure. Nos três temas correspondentes, a visibilidade nas IAs
+        é <b>0%</b>.</p>
+      </div>
+      <div class="card fio" style="border-left-color:#E5007D">
+        <span class="tagline" style="color:#E5007D">A consequência prática</span>
+        <p style="font-size:1.32cqw;color:#fff"><b>A consolidação editorial de setembro a novembro é, ao
+        mesmo tempo, o plano de SEO e o plano de GEO.</b></p>
+        <p style="font-size:1.32cqw">Um trabalho, dois resultados. E nenhuma das três consolidações exige
+        escrever um artigo novo — são textos que já existem, fundidos num endereço só.</p>
+      </div>
+    </div>
+    <p style="font-family:var(--mono);font-size:.94cqw;color:#5E8875;margin:1.6cqw 0 0;letter-spacing:.06em;max-width:80ch">
+    Antes de consolidar, aplicar o teste de quatro sinais: mesma intenção, troca de posição
+    ao longo do tempo, divisão de impressão e confirmação em janela anônima. Consolidar página saudável
+    destrói cauda longa — a operação só acontece com os quatro sinais confirmados.</p>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>26</span></div>
+</section>
+
+<!-- ═════ 21 DIVISÓRIA PLANO ═════ -->
+<section class="s dark divider">
+  <div class="warp"></div>
+  <div class="body" style="position:relative;z-index:2">
+    <div class="num">04</div>
+    <h2>O plano</h2>
+    <p class="sub">Como crescer com dois artigos por mês — e por que isso é suficiente neste mercado.</p>
+  </div>
+</section>
+
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Autoridade <s>/</s> perfil de links</p>
+    <h2>394 links. <em>Um terço aponta para uma imagem.</em></h2>
+    <div class="cols c2c">
+      <table class="dense">
+        <thead><tr><th>Para onde os links apontam</th><th class="n">Links</th><th class="n">%</th></tr></thead>
+        <tbody>
+          <tr><td>Home <small>/</small></td><td class="n">202</td><td class="n">51,3%</td></tr>
+          <tr class="hi"><td><b>Arquivo de imagem ou PDF direto</b><br><small>/img/posts/*.jpg, /images/*.png</small></td><td class="n">126</td><td class="n">32,0%</td></tr>
+          <tr class="hi"><td><b>Arquitetura antiga /br/</b><br><small>inclui O Tempo (DA 88) e NSC Total (DA 71)</small></td><td class="n">39</td><td class="n">9,9%</td></tr>
+          <tr><td>Ambiente antigo /site-novo/</td><td class="n">10</td><td class="n">2,5%</td></tr>
+          <tr><td>Blog antigo e institucionais</td><td class="n">13</td><td class="n">3,3%</td></tr>
+          <tr class="hi"><td><b>lp.texneo.com</b> <small>subdomínio desativado</small></td><td class="n">3</td><td class="n">0,8%</td></tr>
+          <tr><td>Blog atual /blog/</td><td class="n">1</td><td class="n">0,3%</td></tr>
+        </tbody>
+      </table>
+      <div>
+        <div class="card mag">
+          <span class="tagline">O maior desperdício isolado</span>
+          <p><b>126 links que a Texneo conquistou e não está usando.</b> Um link para um arquivo .jpg não
+          transfere sinal para nenhuma página de conteúdo.</p>
+        </div>
+        <div class="card" style="margin-top:.8cqw">
+          <span class="tagline">Um em cada cinco links diz "Farbe"</span>
+          <p><b>77 dos 394</b> usam "farbe" como texto de âncora, contra 151 que usam "texneo".
+          Entre eles, um link do curso de Engenharia Têxtil da UFSC Blumenau, com autoridade 89.
+          É a prova documental da entidade dividida.</p>
+        </div>
+        <div class="card fio" style="margin-top:.8cqw">
+          <span class="tagline">E 90 links citam artigos do blog antigo pelo título</span>
+          <p>"Símbolos para instrução de lavagem", "conheça 4 malhas para moda praia masculina",
+          "trend alert animal print". <b>É o acervo editorial de vocês</b> — e o argumento mais forte
+          para recuperar esses endereços.</p>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <span><b>Sobre a rede de links artificiais:</b> 35 links de páginas que vendem backlink apareceram
+      nas últimas seis semanas. A recomendação é <b>monitorar, não desautorizar</b> — o Google já ignora
+      a maioria, e a ferramenta de desautorização pode remover sinal legítimo junto.</span>
+      <span><b>Ação de uma hora:</b> redirecionar lp.texneo.com recupera um link de imprensa com autoridade 68.</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>28</span></div>
+</section>
+
+<!-- ═════ 22 CONCORRÊNCIA ═════ -->
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Plano <s>/</s> o que separa quem ranqueia</p>
+    <h2>Neste setor, <em>autoridade não é o fator</em></h2>
+    <div class="cols c2c">
+      <table>
+        <thead><tr><th class="n">#</th><th>Domínio</th><th class="n">Tráfego est.</th><th class="n">Palavras em comum</th><th class="n">Backlinks</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td>vicunha.com</td><td class="n">5.964</td><td class="n">0</td><td class="n">125.350</td></tr>
+          <tr><td class="n">2</td><td>rvbmalhas.com.br</td><td class="n">1.829</td><td class="n">4</td><td class="n">1.251</td></tr>
+          <tr class="hi"><td class="n">3</td><td><b>diklatex.com.br</b></td><td class="n">1.790</td><td class="n">35</td><td class="n" style="color:#B3261E">332</td></tr>
+          <tr><td class="n">4</td><td>rosset.com.br</td><td class="n">1.531</td><td class="n">5</td><td class="n">804</td></tr>
+          <tr><td class="n">5</td><td>santistasa.com.br</td><td class="n">1.373</td><td class="n">0</td><td class="n">1.369</td></tr>
+          <tr><td class="n">6</td><td><b>manatex.com.br</b></td><td class="n">897</td><td class="n" style="color:#004F37"><b>57</b></td><td class="n">749</td></tr>
+          <tr class="hi"><td class="n">7</td><td>santaconstancia.com.br</td><td class="n" style="color:#B3261E">792</td><td class="n">1</td><td class="n">6.255</td></tr>
+          <tr class="hi"><td class="n">8</td><td><b>texneo.com</b> <span style="color:#E5007D;font-family:var(--mono);font-size:.82cqw">VOCÊ</span></td><td class="n">387</td><td class="n">—</td><td class="n">394</td></tr>
+        </tbody>
+      </table>
+      <div>
+        <div class="card fio">
+          <span class="tagline">A melhor notícia do relatório</span>
+          <h4>Olhe as duas colunas destacadas</h4>
+          <p><b>Santaconstancia: 6.255 backlinks e 792 visitas.</b><br>
+          <b>Diklatex: 332 backlinks e 1.790 visitas.</b></p>
+          <p>Cinco vezes menos autoridade e mais que o dobro do tráfego. Neste setor, o que separa quem
+          ranqueia de quem não ranqueia é <b>cobertura de conteúdo e arquitetura</b> — não autoridade
+          de domínio.</p>
+          <p style="color:var(--fio2)"><b>É exatamente a frente que cabe no escopo atual</b>, sem depender
+          de aquisição de link, assessoria ou verba nova. A Texneo já ganha dessas mesmas empresas na
+          citação por IA; falta ganhar delas na página de resultado.</p>
+        </div>
+        <div class="card mag" style="margin-top:.8cqw">
+          <span class="tagline">A ressalva honesta</span>
+          <p>Parte da vantagem da Diklatex vem de volume de conteúdo publicado ao longo de anos, e a Texneo
+          publica dois artigos por mês. Por isso o plano <b>não tenta vencer por publicação</b>: aposta nas
+          150 URLs de catálogo que a Texneo já tem e a concorrência não.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>29</span></div>
+</section>
+
+<!-- ═════ 23 A TESE ═════ -->
+<section class="s dark">
+  <div class="body">
+    <p class="eyebrow">Plano <s>/</s> a tese</p>
+    <h2>O conteúdo que falta <em>já está escrito</em></h2>
+    <p class="sub">E o que não está escrito não precisa ser um artigo. Quatro frentes — só uma delas
+    consome o orçamento editorial.</p>
+    <div class="cols c2" style="margin-top:.4cqw;align-items:stretch">
+      <div class="card">
+        <span class="tagline">Frente 1 · não custa artigo</span>
+        <h4>Consolidar</h4>
+        <p>Resolver a convivência entre as duas arquiteturas: rastreamento de status e planilha de destino
+        para os <b>450 endereços sob /br/</b>, consolidação dos seis artigos duplicados e redirecionamento
+        da rota antiga de beachwear. É a prioridade um do trimestre.</p>
+      </div>
+      <div class="card">
+        <span class="tagline">Frente 2 · não custa artigo</span>
+        <h4>Converter o que já aparece</h4>
+        <p>Reescrever título e descrição das <b>35 páginas com muita impressão e pouco clique</b>,
+        começando pelas dez maiores. Depois os <b>546 títulos curtos</b> do catálogo, com o padrão
+        nome + benefício + segmento + marca.</p>
+      </div>
+      <div class="card">
+        <span class="tagline">Frente 3 · custa parcialmente</span>
+        <h4>Dar texto às páginas mudas</h4>
+        <p>As sete páginas de base somam <b>865 impressões no trimestre inteiro</b>. Precisam de 150 a 250
+        palavras próprias, perguntas e respostas, dados estruturados de produto e ligação cruzada.
+        Mais o hub de perguntas frequentes e a tabela de gramaturas.</p>
+      </div>
+      <div class="card" style="border-left-color:#E5007D">
+        <span class="tagline" style="color:#E5007D">Frente 4 · o orçamento inteiro</span>
+        <h4>Blog: 1 nova + 1 atualização</h4>
+        <p>Nunca duas peças novas. Página que já existe carrega histórico e responde em semanas; página nova
+        leva de seis a doze meses. A regra entrega movimento cedo enquanto a metade nova amadurece.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>30</span></div>
+</section>
+
+<!-- ═════ 24 CALENDÁRIO ═════ -->
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Plano <s>/</s> calendário editorial</p>
+    <h2>Setembro a fevereiro: <em>12 peças</em></h2>
+    <p class="sub">Cada linha amarrada a um cluster da base estratégica e, quando existe, à pergunta de IA
+    em que a marca hoje não aparece.</p>
+    <table class="dense" style="margin-top:.2cqw">
+      <thead><tr><th class="n">Mês</th><th>Peça nova</th><th>Consolidação ou atualização</th><th class="n">Cluster</th></tr></thead>
+      <tbody>
+        <tr><td class="n"><b>SET</b></td><td>Malha para legging: gramatura, compressão e cobertura</td>
+        <td>Consolidar as <b>três</b> URLs de tecido para academia numa só</td><td class="n"><span class="p p10">B</span></td></tr>
+        <tr><td class="n"><b>OUT</b></td><td>Como comprar malha por quilo: rendimento, largura útil e consumo
+        <br><small>o prompt correspondente já cita a Texneo em 2º</small></td>
+        <td>Unificar os artigos de símbolos de lavagem num guia de perguntas e respostas
+        <br><small>hoje são quatro URLs somando 33.000 impressões e 205 cliques</small></td><td class="n"><span class="p p10">F</span></td></tr>
+        <tr><td class="n"><b>NOV</b></td><td>Tecido para moda praia: o que muda entre biquíni, sunga e saída
+        <br><small>entra no início da temporada</small></td>
+        <td>Consolidar os dois artigos de athleisure</td><td class="n"><span class="p p10">C</span></td></tr>
+        <tr><td class="n"><b>DEZ</b></td><td>Cores do ano e da temporada 2027
+        <br><small>formato que historicamente rendeu links editoriais espontâneos ao site</small></td>
+        <td>Consolidar as duas versões de "tecido que não amassa"<br><small>4.949 impressões, 18 cliques, divididas ao meio</small></td><td class="n"><span class="p p10">D</span></td></tr>
+        <tr><td class="n"><b>JAN</b></td><td>Tecido para lingerie e underwear: bases, toque e sustentação
+        <br><small>único segmento sem nenhuma cobertura</small></td>
+        <td>Consolidar "tecido esportivo ideal" e atualizar o guia de rendimento</td><td class="n"><span class="p p10">E</span></td></tr>
+        <tr><td class="n"><b>FEV</b></td><td>Poliamida ou poliéster: qual base usar em cada tipo de peça
+        <br><small>a versão antiga tem 4.554 impressões e 0,40% de CTR</small></td>
+        <td>Atualizar o artigo de estamparia digital e ligá-lo à página de estamparia</td><td class="n"><span class="p p10">D</span></td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <span><b>As páginas-resposta correm em paralelo</b> e não consomem essas 12 vagas: hub de perguntas
+      frequentes, blocos de pergunta e resposta por segmento, tabela de gramaturas e página de identidade
+      da marca são entregas de página, não de blog.</span>
+      <span><b>Regra fixa:</b> nunca duas peças novas no mesmo mês. Uma nova, uma consolidação.</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>31</span></div>
+</section>
+
+<section class="s dark">
+  <div class="body">
+    <p class="eyebrow">Plano <s>/</s> ainda dá tempo</p>
+    <h2>O sprint de agosto: <em>22 a 31</em></h2>
+    <p class="sub">Dez dias úteis de trabalho de retorno alto que não depende de infraestrutura nem de
+    aprovação de conteúdo novo. Tudo aqui pode começar esta semana.</p>
+    <table class="dense" style="margin-top:.2cqw">
+      <thead><tr><th class="n">Prazo</th><th>Ação</th><th class="n">Dono</th><th>Por que agora</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="n">22–26</td><td><b>Reescrever título e descrição das 10 páginas de maior impressão e menor CTR</b></td>
+        <td class="n">LAB8</td><td>82 mil impressões com 500 cliques. Publicado até 26/08, aparece na leitura de setembro.</td></tr>
+        <tr class="hi"><td class="n">22–29</td><td><b>Rastrear o status dos 450 endereços sob /br/ e montar a planilha de destino</b></td>
+        <td class="n">LAB8</td><td>É o insumo do item de maior impacto do trimestre. Sem ela, setembro começa parado.</td></tr>
+        <tr><td class="n">25–27</td><td>Configurar os eventos principais da medição e o segmento sem área restrita</td>
+        <td class="n">LAB8</td><td>Faz o report de setembro sair com conversão real, em vez de 0,18%.</td></tr>
+        <tr><td class="n">até 27</td><td>Redirecionar lp.texneo.com para as páginas equivalentes</td>
+        <td class="n">Dev · 1h</td><td>Recupera um link de imprensa com autoridade 68 que hoje aponta para o vazio.</td></tr>
+        <tr><td class="n">até 27</td><td>Confirmar o status da URL antiga de beachwear e redirecionar para /segmentos/beachwear</td>
+        <td class="n">Dev · 1h</td><td>Sete termos comerciais dependem disso, e a temporada começa em novembro.</td></tr>
+        <tr><td class="n">até 29</td><td>Declarar "Têxtil Farbe" como nome alternativo nos dados estruturados</td>
+        <td class="n">Dev · 30min</td><td>77 links dizem que a empresa se chama Farbe.</td></tr>
+        <tr><td class="n">até 29</td><td>Lote de higiene: rodapé de 2025, links quebrados da newsletter, navegação</td>
+        <td class="n">Front · 2h</td><td>Encerra três achados abertos e devolve a nota de SEO de 92 para 100.</td></tr>
+        <tr><td class="n">29–31</td><td>Solicitar reindexação das 14 páginas alteradas</td>
+        <td class="n">LAB8</td><td>Antecipa a leitura: com o tempo de resposta atual, o rastreamento pode levar semanas.</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <span><b>O que esperamos ver no report de setembro:</b> reação no CTR das consultas sem marca
+      (hoje 0,76%) e nos cliques por dia (hoje 104). Quatro a seis semanas de leitura.</span>
+      <span><b>Nada de posição deve mudar nesse prazo</b>, e isso é o esperado — reescrever título muda
+      quem clica, não muda quem ranqueia.</span>
+    </div>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>32</span></div>
+</section>
+
+<!-- ═════ 25 PLANO 90 DIAS ═════ -->
+<section class="s">
+  <div class="body">
+    <p class="eyebrow">Plano <s>/</s> 90 dias</p>
+    <h2>O que entra em setembro, outubro e novembro</h2>
+    <table class="dense" style="margin-top:.3cqw">
+      <thead><tr><th class="n">Sev.</th><th>Ação</th><th class="n">Dono</th><th>Métrica que reage e quando</th></tr></thead>
+      <tbody>
+        <tr class="gtd"><td colspan="4">Setembro · consolidar</td></tr>
+        <tr class="hi"><td class="n"><span class="p pno">P0</span></td><td><b>Aplicar o mapa de redirecionamento de /br/</b>, em lotes, começando pelos 20 endereços de maior impressão</td><td class="n">Dev</td><td>Impressões consolidadas na arquitetura atual e queda das páginas duplicadas · 6 a 8 semanas</td></tr>
+        <tr><td class="n"><span class="p pno">P0</span></td><td><b>Derrubar o tempo de resposta do servidor para menos de 0,6 s</b> — cache, CDN e revisão das consultas de listagem</td><td class="n">Infra</td><td>Tempo de resposta e maior elemento visível, em dado de campo · 4 semanas</td></tr>
+        <tr><td class="n"><span class="p pno">P0</span></td><td>Tratar o vídeo do banner: imagem no celular, sem autoplay pesado</td><td class="n">Front-end</td><td>Peso total da página e tempo de carregamento no celular · 4 semanas</td></tr>
+        <tr><td class="n"><span class="p p50">P2</span></td><td>Consolidar as três URLs de tecido para academia · publicar a base de 45 termos no painel</td><td class="n">LAB8</td><td>Posição e CTR do cluster B · 4 a 6 semanas</td></tr>
+
+        <tr class="gtd"><td colspan="4">Outubro · recuperar</td></tr>
+        <tr><td class="n"><span class="p p20">P1</span></td><td>Concluir o mapa de /br/ e decidir o destino dos endereços de blog sem equivalente</td><td class="n">LAB8 + dev</td><td>Sessões orgânicas do blog · recuperação dos 90 links editoriais · 6 a 8 semanas</td></tr>
+        <tr><td class="n"><span class="p p20">P1</span></td><td>Tirar os 1.107 endereços de orçamento e as 4 rotas de área restrita do rastreamento e do sitemap</td><td class="n">Dev</td><td>Endereços rastreados caem de 2.391 para ~1.280 · 4 a 6 semanas</td></tr>
+        <tr><td class="n"><span class="p p50">P2</span></td><td>Corrigir os dados estruturados e implementar <b>Product</b> no catálogo · publicar o hub de perguntas frequentes</td><td class="n">LAB8 + dev</td><td>Aparições em resultado enriquecido de produto, que hoje convertem a 7,39% · 3 a 4 semanas</td></tr>
+
+        <tr class="gtd"><td colspan="4">Novembro · converter</td></tr>
+        <tr><td class="n"><span class="p p50">P2</span></td><td><b>Reescrever os 546 títulos curtos do catálogo</b> em lotes de 100, e dar texto próprio às 11 páginas de base e segmento</td><td class="n">LAB8</td><td>CTR das páginas de produto, hoje 5,77% · clusters D e E no top 100 · 8 a 12 semanas</td></tr>
+        <tr><td class="n"><span class="p p50">P2</span></td><td>Trilha de navegação visível nas internas e lote de acessibilidade</td><td class="n">Dev + front</td><td>Navegação agêntica de 2/3 para 3/3 · nota de SEO em 100 · 4 semanas</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foot"><span><b>LAB8</b> · Texneo · Agosto 2026</span><span>33</span></div>
+</section>
+
+<!-- ═════ 26 FECHO ═════ -->
+<section class="s dark">
+  <div class="warp"></div>
+  <div class="body" style="justify-content:center;position:relative;z-index:2">
+    <p class="eyebrow">Em uma frase</p>
+    <p style="font-family:var(--serif);font-size:2.5cqw;line-height:1.36;color:#fff;max-width:36ch;margin:0 0 2cqw">
+    O site perdeu <span style="color:var(--fio)">vitrine</span>, não perdeu cliques.
+    O que está pela frente não é reconquistar tráfego: é cobrar o clique do que já acontece.</p>
+    <div class="cols c3" style="flex:0">
+      <div class="card"><span class="tagline">01</span><p style="font-size:1.28cqw">Resolver a convivência
+      entre as <b>duas arquiteturas</b>: 450 endereços e seis artigos duplicados.</p></div>
+      <div class="card"><span class="tagline">02</span><p style="font-size:1.28cqw">Cobrar o clique das
+      <b>119 mil impressões</b> que já acontecem em páginas de primeira página.</p></div>
+      <div class="card"><span class="tagline">03</span><p style="font-size:1.28cqw">Medir os
+      <b>45 termos</b> que a Texneo realmente vende, com meta por trimestre.</p></div>
+    </div>
+    <div style="margin-top:2.4cqw;padding-top:1.4cqw;border-top:1px solid #1E4C3C;display:flex;
+      justify-content:space-between;align-items:baseline">
+      <div class="logo" style="font-size:1.9cqw">LAB<span>8</span><small style="font-size:.72cqw">agência</small></div>
+      <div style="font-family:var(--mono);font-size:.94cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:right">
+        Relatório completo com as três planilhas em anexo<br>
+        <span style="color:#fff">Texneo · Agosto de 2026</span></div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="nav">
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button id="prev" aria-label="Slide anterior">◀</button>
+  <button id="next" aria-label="Próximo slide">▶</button>
+  <button id="fs" aria-label="Tela cheia">Tela cheia</button>
+</div>
+
+<script>
+(function(){
+  var deck=document.getElementById('deck');
+  var slides=Array.prototype.slice.call(deck.querySelectorAll('.s'));
+  var cnt=document.getElementById('cnt');
+  function current(){
+    var top=deck.scrollTop, best=0, bd=Infinity;
+    slides.forEach(function(s,i){var d=Math.abs(s.offsetTop-top);if(d<bd){bd=d;best=i;}});
+    return best;
+  }
+  function go(i){
+    i=Math.max(0,Math.min(slides.length-1,i));
+    deck.scrollTo({top:slides[i].offsetTop,behavior:'smooth'});
+    cnt.textContent=(i+1)+' / '+slides.length;
+  }
+  deck.addEventListener('scroll',function(){cnt.textContent=(current()+1)+' / '+slides.length;},{passive:true});
+  document.getElementById('next').addEventListener('click',function(){go(current()+1)});
+  document.getElementById('prev').addEventListener('click',function(){go(current()-1)});
+  document.getElementById('fs').addEventListener('click',function(){
+    if(document.fullscreenElement){document.exitFullscreen()}else{document.documentElement.requestFullscreen()}
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(current()+1)}
+    if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(current()-1)}
+    if(e.key==='Home'){e.preventDefault();go(0)}
+    if(e.key==='End'){e.preventDefault();go(slides.length-1)}
+  });
+  cnt.textContent='1 / '+slides.length;
+})();
+</script>
+</body>
+</html>
